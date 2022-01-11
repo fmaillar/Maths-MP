@@ -1,0 +1,47 @@
+\chapter{Applications linéaires et affines}
+Dans ce chapitre $E$ et $F$ désignent des $\K$-espaces vectoriels de dimension quelconque.
+\section{Applications linéaires}
+\subsection{Définitions}
+\begin{defdef}
+Une application $f$ de $E$ dans $F$ est dite linéaire, ou bien que c'est un homomorphisme de $E$ dans $F$, si~:
+\begin{equation}
+\forall x,y \in E, \forall \lambda,mu \in \K \quad f(\lambda x + \mu y) = \lambda f(x)+\mu f(y)
+\end{equation}
+\end{defdef}
+Cela équivaut aussi
+\begin{align}
+\forall x,y \in E \quad f(x+y) &= f(x)+f(y) \\
+\forall x \in E \forall \lambda in \K \quad f(\lambda x)= \lambda f(x)
+\end{align}
+
+On vérifie aisément que l'ensemble $\Lin{E}{F}$ des applications linéaires de $E$ dans $F$ est un $\K$-espace vectoriel, sous-espace vectoriel de l'espace vectoriel $E^F$ de toutes les applications de $E$ dans $F$.
+
+\emph{Vocabulaire}~: Soit $f \in \Lin{E}{F}$. Si $f$, $E$ et $F$ sont quelconques alors c'est un homomorphisme ; si $E=F$ et $f$ quelconque il s'agit d'un endomorphisme ; si $f$ est bijective et $E$, $F$ quelconque alors $f$ est un isomorphisme ; si $f$ est bijective avec $E=F$ alors $f$ est un automorphisme.
+
+\emph{Isomorphismes}~: On a deux résultats importants~:
+\begin{itemize}
+\item Soit $f \in \Iso{E}{F}$. Deux cas sont possibles~:
+\begin{itemize}
+\item soit $E$ et $F$ sont de dimension infinie ;
+\item soit $E$ et $F$ sont de dimension finie et $\dim{E} = \dim{F}$, on ne parle pas de dimension si on ne sait pas que l'espace est de dimension finie
+\end{itemize}
+\item Deux espaces vectoriels de même dimension finie sont isomorphes : il existe un isomorphisme de l'un vers l'autre.
+\end{itemize}
+
+\section{Propriétés}
+\begin{prop}
+Si $E$ et $F$ sont de dimension finie alors \(\dim\Lin{E}{F}=\dim{E} \times \dim{F}\)
+\end{prop}
+
+\emph{Images directes et réciproques de sous-espaces vectoriels~:}
+\begin{prop}
+Soit \[f \in \Lin{E}{F}\] une application linéaire de $E$ dans $F$.
+\begin{enumerate}
+\item Si $E'$ est un sous-espace vectoriel de $E$ alors $f(E') = \enstq{y \in F}{\exists x \in E' y=f(x)}$ est un sous-espace vectoriel de $F$.
+\item Si $F'$ est un sous-espace vectoriel de $F$ alors $f^{-1}(F') =  \enstq{x \in E}{f(x) \in F'}$ est un sous-espace vectoriel de $E$.
+\end{enumerate}
+\end{prop}
+
+\begin{prop}
+L'ensemble $\GL{E}$ des automorphismes de $E$ est un groupe pour la loi de composition $\circ$. On l'appelle le groupe linéaire de l'espace vectoriel $E$.
+\end{prop} 
