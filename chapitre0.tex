@@ -33,7 +33,7 @@ On a deux résultats importants~:
     \item Soit $f \in \Iso{E}{F}$. Deux cas sont possibles~: 
     \begin{itemize} 
         \item soit $E$ et $F$ sont de dimension infinie ; 
-        \item soit $E$ et $F$ sont de dimension finie et $\dim{E} = \dim{F}$, on
+        \item soit $E$ et $F$ sont de dimension finie et $\Dim{E} = \Dim{F}$, on
             ne parle pas de dimension si on ne sait pas que l'espace est de
             dimension finie
     \end{itemize} 
@@ -45,7 +45,7 @@ On a deux résultats importants~:
 \begin{prop} 
     Si $E$ et $F$ sont de dimension finie alors
     \begin{equation}
-        \dim\Lin{E}{F}=\dim{E} \times \dim{F}
+        \Dim\Lin{E}{F}=\Dim{E} \times \Dim{F}
     \end{equation}
 \end{prop}
 %
@@ -119,3 +119,120 @@ On montre alors aisément que~:
 \end{prop}
 
 \paragraph{Image directes et réciproques de sous-espaces affines (sea)}
+\begin{prop}
+	Soit $f \in \A(E, F)$ une application affine de E dans F.
+	\begin{enumerate}
+		\item Si $A$ est un sea de $E$ de direction E' alors $f(A) = \enstq{y \in F}{\exists x \in A \ y= f(x)}$ est un sea de $F$ de direction $f(E')$ ;
+		\item Si $B$ est un sea de $F$ de direction $F'$ alors $J^{1}(B) = \enstq{x \in E}{f(x) \in B}$ est ou bien vide ou bien un sea de E de direction $J^{1}(F')$.
+	\end{enumerate}
+\end{prop}
+
+\paragraph{Composition}
+\begin{prop}
+	Soient $E, F, G$ des $\K$-espaces vectoriels et $f \in \A(E, F), g \in \A(F, G)$, alors $g \circ f \in \A(E, G)$, avec~:
+	\begin{equation}
+		\widetilde{g \circ f} = \tilde{g} \circ \tilde{f}
+	\end{equation}
+\end{prop}
+
+\paragraph{Conservation du barycentre}
+\begin{prop}
+	Soit $f \in \A(E, F)$ une application affine de E dans F. Si $g$ est le barycentre de la famille $(x_i)_{i \in I}$ affectée des coefficient $(\alpha_i)_{i \in I}$, alors $f(g)$ est le barycentre e la famille $(f(x_i))_{i \in I}$ affectée des coefficient $(\alpha_i)_{i \in I}$.
+\end{prop}
+
+\section{Image, noyau et rang}
+Dans cette section, $E$, $F$ et $G$ sont des espaces vectoriels quelconques
+\subsection{Rang d'une application linéaire}
+\begin{defdef}
+	Soit $f \in \Lin{E}{F}$ une application linéaire de $E$ dans $F$. L'espace vectoriel image de $f$ est~:
+	\begin{equation}
+		\Image{f} = \enstq{y \in F}{\exists x \in E \ y=f(x)}.
+	\end{equation}
+	Si $\Image{f}$ est de dimension finie, on dit que $f$ est de rang fini égal à la dimension de $f$~: $\rg{f} = \dim{\Image{f}}$ ; sinon on dit que $f$ est de rang infini.
+\end{defdef}
+
+\emph{Remarque}~: Il est clair que $f$ est surjective si et seulement si $\Image{f}=F$.
+
+\begin{prop}
+	Soit $f \in Lin{E}{F}$ et $(x_i)_{i \in I}$ une famille génératrice de $E$. Le rang de $f$ est aussi le rang de la famille de vecteurs $(f(x_i))_{i \in I}$
+\end{prop}
+\begin{proof}
+	En effet, $\rg{f} = \Dim{\Image{f}} = \Dim{\VectEngendre{(f(x_i))_{i \in I}}} = \rg{(f(x_i))_{i \in I}}$
+\end{proof}
+\begin{prop}
+	Soit $f \in Lin{E}{F}$. On a $\rg{f} \leq \minof{\Dim{E}}{\Dim{F}}$
+\end{prop}
+Lire la sous-section 17.4.2 \emph{Rang d’une application linéaire} du cours de MPSI pour les démonstrations des inégalités.
+
+\begin{prop}
+	Soient $f \in \Lin{E}{F}$ et $g \in \Lin{F}{G}$, alors~:
+	\begin{enumerate}
+		\item $\rg{g \circ f} \leq minof{\rg{f}}{\rg{g}}$ ;
+		\item Si $f \in \Iso{E}{F}$, alors $\rg{g \circ f} = \rg{g}$ ;
+		\item Si $f \in \Iso{F}{G}$, alors $\rg{g \circ f} = \rg{f}$.
+	\end{enumerate}
+\end{prop}
+Lire la démonstration du théorème 17.22 du cours de MPSI pour la démonstration.
+
+\subsection{Noyau d'une application linéaire}
+\begin{defdef}
+	Soit $f \in \Lin{E}{F}$ une application linéaire de $E$ dans $F$.  Le noyau de $f$ est le sous-espace vectoriel de $E$~:
+	\begin{equation}
+		\ker{f} = \enstq{x \in E}{f(x)=0_F} = f^{-1}(0_F).
+	\end{equation}
+\end{defdef}
+
+On prouve facilement que $f$ est injective si et seulement si son noyau est l'espace nul $\ker{f} = \{0_E\}$. Attention, cette équivalence n'est vraie que pour une application linéaire.
+
+Si $E'$ est un sev de $E$ et si $f_{E'}$ est une restriction de $f$ à $E'$, alors 
+\begin{equation}
+	\ker{f_{E'}} = E' \cap \ker{f}
+\end{equation}
+
+\paragraph{Équation aux antécédents}
+\begin{prop}
+	Soit $f \in \A{E}{F}$, de partie linéaire $\tilde{f}$, et $b \in F$. L'ensemble $f^{-1}(b)$ des antécédents de $b$ par $f$ est soit vide soit un sous-espace affine de direction $\ker{f}$.
+\end{prop}
+\begin{proof}
+	$f^{-1}(b)$ est vide si $b \not\in \Image{f}$, ce qui n'arrive pas lorsque $f$ est surjective. Lorsque $b \in \Image{f}$, alors il existe $a \in E$ tel que $b=f(a)$ et quelque soit $x \in E$ on a la suite d'équivalence~:
+	\begin{equation}
+		x \in f^{-1}(b) \iff f(x)=f(a) \iff \tilde{f}(x-a)=0_E \iff x-a \in \ker{\tilde{f}} \iff x \in a + \ker{\tilde{f}},
+	\end{equation}
+	ce qui permet d'écrire que $f^{-1}(b) = a + \ker{\tilde{f}}$ et donc que $f^{-1}(b)$ est bien un sous-espace affine de direction $\ker{f}$
+\end{proof}
+
+\paragraph{Théorème d'isomorphisme}
+\begin{theo}
+	Soit $f \in \Lin{E}{F}$ et $E'$ un supplémentaire de $\ker{f}$ dans $E$. L'application restreinte au départ à $E'$ et $\Image{f}$ à l'arrivée~:
+	\begin{equation}
+		g=f_{|E'}^{|\Image{f}} = \fonction{\tilde{f}}{E'}{\Image{f}}{x}{f(x)}
+	\end{equation}
+	est un isomorphisme d'espaces vectoriels.
+\end{theo}
+Lire la démonstration du théorème 16.13 du cours de MPSI, qui énonce que quelque soit $f \in \Lin{E}{F}$, tout supplémentaire du noyau de $f$ est isomorphe à l'image de $f$.
+En conséquence, on a la formule du rang~:
+\begin{corth}
+	Si $E$ est de dimension finie et $F$ de dimension quelconque, pour toute application linéaire $f \in \Lin{E}{F}$~:
+	\begin{equation}
+		\Dim{E} = \Dim{\ker{f}} + \rg{f}.
+	\end{equation}
+\end{corth}
+Lire la démonstration à la sous-section 17.4.1 du cours de MPSI.
+
+La formule du rang donne immédiatement~:
+\begin{corth}
+	Si $E$ et $F$ sont de même dimension finie, on a pour toute $f \in \Lin{E}{F}$~: $f$ est bijective ssi $f$ est injective ssi $f$ est surjective.
+\end{corth}
+Lire la démonstration du théorème 17.23 du cours de MPSI.
+
+\section{Caractérisation d'une application linéaire}
+
+Les trois résultats suivants sont fondamentaux : ils donnent trois façons d'introduire une application linéaire. Il y en aura une quatrième à l'aide des matrices. Ce sont de bons exercices d'entraînement aux questions d'existence et d'unicité.
+
+\begin{theo}
+	Soient $E, F_1, \ldots, F_p$ des espaces vectoriels et $\fonction{f}{E}{F_1 \times \ldots \times F_p}{x}{(f_1(x), \ldots, f_p(x))}$ une application de $E$ dans l'espace vectoriel produit $F_1 \times \ldots \times F_p$. On a l'équivalence suivante~:
+	\begin{equation}
+		f \in \Lin{E}{F} \iff \forall i \in \intervalleentier{1}{p} \ f_i \in \Lin{E}{F_i}
+	\end{equation}
+Soit encore $f$ est linéaire si et seulement si $f_1, \ldots, f_p$ sont linéaires.
+\end{theo}
