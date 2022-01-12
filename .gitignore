@@ -1,0 +1,7 @@
+manuscrit
+*.aux
+*.lo*
+*.m*
+*.out
+*.pdf
+*.toc
