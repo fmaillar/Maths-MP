@@ -1,47 +1,121 @@
-\chapter{Applications linéaires et affines}
-Dans ce chapitre $E$ et $F$ désignent des $\K$-espaces vectoriels de dimension quelconque.
-\section{Applications linéaires}
-\subsection{Définitions}
-\begin{defdef}
-Une application $f$ de $E$ dans $F$ est dite linéaire, ou bien que c'est un homomorphisme de $E$ dans $F$, si~:
-\begin{equation}
-\forall x,y \in E, \forall \lambda,mu \in \K \quad f(\lambda x + \mu y) = \lambda f(x)+\mu f(y)
-\end{equation}
-\end{defdef}
-Cela équivaut aussi
+\chapter{Applications linéaires et affines} 
+Dans ce chapitre $E$ et $F$ désignent des $\K$-espaces vectoriels de dimension
+quelconque.
+\section{Applications linéaires} 
+\subsection{Définitions} 
+\begin{defdef} 
+    Une application $f$ de $E$ dans $F$ est dite linéaire, ou bien que c'est un
+    homomorphisme de $E$ dans $F$, si~: 
+    \begin{equation} 
+        \forall x,y \in E, \forall \lambda,\mu \in \K \quad f(\lambda x + \mu y) = \lambda f(x)+\mu f(y)
+    \end{equation} 
+\end{defdef} 
+Cela équivaut aussi 
 \begin{align}
-\forall x,y \in E \quad f(x+y) &= f(x)+f(y) \\
-\forall x \in E \forall \lambda in \K \quad f(\lambda x)= \lambda f(x)
+    \forall x,y \in E \quad f(x+y) &= f(x)+f(y) \\
+    \forall x \in E \forall \lambda \in \K \quad f(\lambda x)= \lambda f(x) 
 \end{align}
 
-On vérifie aisément que l'ensemble $\Lin{E}{F}$ des applications linéaires de $E$ dans $F$ est un $\K$-espace vectoriel, sous-espace vectoriel de l'espace vectoriel $E^F$ de toutes les applications de $E$ dans $F$.
+On vérifie aisément que l'ensemble $\Lin{E}{F}$ des applications linéaires de
+$E$ dans $F$ est un $\K$-espace vectoriel, sous-espace vectoriel de l'espace
+vectoriel $E^F$ de toutes les applications de $E$ dans $F$.
 
-\emph{Vocabulaire}~: Soit $f \in \Lin{E}{F}$. Si $f$, $E$ et $F$ sont quelconques alors c'est un homomorphisme ; si $E=F$ et $f$ quelconque il s'agit d'un endomorphisme ; si $f$ est bijective et $E$, $F$ quelconque alors $f$ est un isomorphisme ; si $f$ est bijective avec $E=F$ alors $f$ est un automorphisme.
+\paragraph{Vocabulaire} 
+Soit $f \in \Lin{E}{F}$. Si $f$, $E$ et $F$ sont quelconques alors c'est un
+homomorphisme ; si $E=F$ et $f$ quelconque il s'agit d'un endomorphisme, leur
+ensemble est $\Endo{E}$ ; si $f$ est bijective et $E$, $F$ quelconque alors $f$
+est un isomorphisme, leur ensemble est $\Iso{E}{F}$ ; si $f$ est bijective avec
+$E=F$ alors $f$ est un automorphisme, leur ensemble est $\GL{E}$.
 
-\emph{Isomorphismes}~: On a deux résultats importants~:
-\begin{itemize}
-\item Soit $f \in \Iso{E}{F}$. Deux cas sont possibles~:
-\begin{itemize}
-\item soit $E$ et $F$ sont de dimension infinie ;
-\item soit $E$ et $F$ sont de dimension finie et $\dim{E} = \dim{F}$, on ne parle pas de dimension si on ne sait pas que l'espace est de dimension finie
+\paragraph{Isomorphismes} 
+On a deux résultats importants~: 
+\begin{itemize} 
+    \item Soit $f \in \Iso{E}{F}$. Deux cas sont possibles~: 
+    \begin{itemize} 
+        \item soit $E$ et $F$ sont de dimension infinie ; 
+        \item soit $E$ et $F$ sont de dimension finie et $\dim{E} = \dim{F}$, on
+            ne parle pas de dimension si on ne sait pas que l'espace est de
+            dimension finie
+    \end{itemize} 
+    \item Deux espaces vectoriels de même dimension finie sont isomorphes : il
+        existe un isomorphisme de l'un vers l'autre.
 \end{itemize}
-\item Deux espaces vectoriels de même dimension finie sont isomorphes : il existe un isomorphisme de l'un vers l'autre.
-\end{itemize}
 
-\section{Propriétés}
+\subsection{Propriétés} 
+\begin{prop} 
+    Si $E$ et $F$ sont de dimension finie alors
+    \begin{equation}
+        \dim\Lin{E}{F}=\dim{E} \times \dim{F}
+    \end{equation}
+\end{prop}
+%
+\paragraph{Images directes et réciproques de sous-espaces vectoriels} 
 \begin{prop}
-Si $E$ et $F$ sont de dimension finie alors \(\dim\Lin{E}{F}=\dim{E} \times \dim{F}\)
+    Soit \[f \in \Lin{E}{F}\] une application linéaire de $E$ dans $F$.
+    \begin{enumerate} 
+        \item Si $E'$ est un sous-espace vectoriel de $E$ alors $f(E') =
+        \enstq{y \in F}{\exists x \in E' y=f(x)}$ est un sous-espace vectoriel
+            de $F$ ;
+        \item Si $F'$ est un sous-espace vectoriel de $F$ alors $f^{-1}(F') =
+            \enstq{x \in E}{f(x) \in F'}$ est un sous-espace vectoriel de $E$.
+    \end{enumerate}
+\end{prop}
+%
+\begin{prop} 
+    L'ensemble $\GL{E}$ des automorphismes de $E$ est un groupe pour la loi de
+    composition $\circ$. On l'appelle le \emph{groupe linéaire} de l'espace vectoriel $E$.  
+\end{prop}
+%
+\begin{prop} 
+    L'ensemble $(\Endo{E},+,\circ;\dot)$ des endomorphismes de $E$ est une
+    $\K$-algèbre. Elle n'est ni commutative ni intègre.
+\end{prop}
+\subsection{Image de familles} 
+Soit $f \in \Lin{E}{F}$ et $\xi=(x_i)_{i \in I}$ une famille de vecteurs de $E$.
+On note $f(xi) = (f(x_i))_{i \in I}$ la famille image de $\xi$ par $f$. On
+vérifiera à titre d'exercice que~:
+\begin{itemize}
+    \item Si $\xi$ est liée alors $f(\xi)$ est liée ;
+    \item Si $f(\xi)$ est libre alors $\xi$ est libre ;
+    \item Si $\xi$ est génératrice dans $E$ alors $f(\xi)$ est génératrice dans
+        $\Image{f}$ ;
+    \item Si $\xi$ est génératrice dans $E$ et $f$ surjective alors $f(\xi)$ est
+        génératrice dans $F$ ;
+    \item Si $\xi$ est libre et $f$ injective alors $f(\xi)$ est libre ;
+    \item Si $\xi$ est une base de $E$ et $f$ bijective alors $f(\xi)$ est une base de $F$.
+\end{itemize}
+%
+\section{Applications affines}
+\subsection{Définition}
+\begin{defdef}
+    Une application $f$ de $E$ dans $f$ est dite \emph{affine} s'il existe $a
+    \in E$ et $\tilde{f} \in \Lin{E}{F}$ tels que~:
+    \begin{equation}
+        \forall x \in E \quad f(x)=f(a)+\tilde{f}(x-a)
+    \end{equation}
+    et avec des points $\forall M \in E \quad f(M)=f(A)+ \tilde{f}(\vect{AM})$.
+\end{defdef}
+
+On montre alors aisément que~:
+\begin{itemize}
+    \item $\tilde{f}$ est unique, on l'appelle la partie linéaire de $f$ ;
+    \item quelque soient $x$ et $y$ de $E$, $f(x)=f(y)+\tilde{f}(x-y)$;
+    \item $f$ est injective (resp. surjective, bijective) si et seulement si
+        $\tilde{f}$ est injective (resp. surjective, bijective)
+\end{itemize}
+
+\paragraph{Exemples}
+\begin{itemize}
+    \item Une application linéaire est affine, sa partie linéaire est elle-même ;
+    \item Une translation est affine, sa partie linéaire est l'identité de $E$
+        (réciproque vraie).
+\end{itemize}
+\subsection{Propriétés}
+
+\paragraph{Structure}
+\begin{prop}
+    L'ensemble $\A(E,F)$ des applications affines de $E$ dans $F$ est un
+    sous-espace vectoriel de $\F(E,F)$.
 \end{prop}
 
-\emph{Images directes et réciproques de sous-espaces vectoriels~:}
-\begin{prop}
-Soit \[f \in \Lin{E}{F}\] une application linéaire de $E$ dans $F$.
-\begin{enumerate}
-\item Si $E'$ est un sous-espace vectoriel de $E$ alors $f(E') = \enstq{y \in F}{\exists x \in E' y=f(x)}$ est un sous-espace vectoriel de $F$.
-\item Si $F'$ est un sous-espace vectoriel de $F$ alors $f^{-1}(F') =  \enstq{x \in E}{f(x) \in F'}$ est un sous-espace vectoriel de $E$.
-\end{enumerate}
-\end{prop}
-
-\begin{prop}
-L'ensemble $\GL{E}$ des automorphismes de $E$ est un groupe pour la loi de composition $\circ$. On l'appelle le groupe linéaire de l'espace vectoriel $E$.
-\end{prop} 
+\paragraph{Image directes et réciproques de sous-espaces affines (sea)}
