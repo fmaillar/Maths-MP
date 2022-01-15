@@ -4,7 +4,7 @@
 %packages fondamentaux
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[french]{babel}
+\usepackage[francais]{babel}
 %
 %pour les symboles mathématiques
 \usepackage{amsmath}
@@ -83,12 +83,13 @@
 %
 %Pour la taille de la page
 \usepackage{geometry}
-\geometry{
-	a4paper,
-	total={170mm,257mm},
-	left=20mm,
-	top=20mm,
-}
+%\geometry{
+%	a4paper,
+%%	total={170mm,257mm},
+%%	left=20mm,
+%%	top=20mm,
+%%	margin=2cm,
+%}
 %% entêtes et pieds de pages
 %Entêtes et pieds de pages
 \usepackage{fancyhdr}
@@ -147,8 +148,11 @@ breaklinks = true%
 \usepackage{tabularx}
 %onchange le nom de la table
 \renewcommand{\tablename}{\bsc{Tableau}}
+%TODO
+\usepackage{todonotes}
 %%%%%%%%%%%%%%%%%%%%%%% THM et STYLES %%%%%%%%%%%%%%%%%%%%%%
 %
+\newtheorem*{remarque}{Remarque}
 \theoremstyle{plain} \newtheorem{theo}{Théorème}[chapter]
 %\newtheorem*{theo_etoile}{Théorème}
 \newtheorem{lemme}{Lemme}[chapter]
@@ -229,6 +233,7 @@ breaklinks = true%
 %\renewcommand{\Re}{\mathfrak{R}}
 %\renewcommand{\Im}{\mathfrak{I}}
 \newcommand{\Lin}[2]{\mathcal{L}\left(#1,#2\right)}
+\newcommand{\Aff}[2]{\mathcal{A}\left(#1,#2\right)}
 \newcommand{\pLin}[3]{\mathcal{L}_{#1}\left(#2,#3\right)}
 \newcommand{\Endo}[1]{\mathcal{L}\left(#1\right)}
 \newcommand{\pEndo}[2]{\mathcal{L}_{#1}\left(#2\right)}
