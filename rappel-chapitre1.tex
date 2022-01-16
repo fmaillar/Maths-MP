@@ -1,0 +1,200 @@
+\chapter{Matrices}
+\label{chap:matrices}
+\minitoc
+\minilof
+\minilot
+
+\section{Présentation}
+\label{chap1-sec:presentation}
+\subsection{Définitions}
+Une matrice de format $n \times p$ et à coefficients dans le corps $\K$ est une famille $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ d'éléments de $\K$ indexée par $\intervalleentier{1}{n} \times \intervalleentier{1}{p}$. On représente cette famille sous la forme d'un tableau~:
+\begin{equation}
+	A = \begin{pmatrix}
+		a_{1,1} & a_{1,2} & \cdots & a_{1,p} \\
+		a_{2,1} & a_{2,2} & \cdots & a_{2, p} \\
+		\vdots & \vdots &  & \vdots \\
+		a_{n,1} & a_{n,2} & \cdots & a_{n,p}
+	\end{pmatrix}
+\end{equation}
+dans lequel $a_{i,j}$ est le coefficient se trouvant à l'intersection de la $i$\ieme{} ligne et de la $j$\ieme{} colonne, on dit que c'est le coefficient de la place $(i, j)$ dans $A$.
+
+\begin{remarque}
+	Il est fondamental dans les notations de bien distinguer~:
+	\begin{itemize}
+		\item $a_{i,j}$ qui est un élément de $\K$ pour un certain couple $(i, j)$
+		\item $(a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ qui est un élément de $\Mnp{n}{p}{\K}$ et où $(i, j)$ qui est muet, n'a pas à être introduit \dots{}
+	\end{itemize}
+\end{remarque}
+D'ailleurs, si $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$, on a aussi bien $A = (a_{k,l})_{\substack{1\leqslant k \leqslant n \\ 1 \leqslant l \leqslant p}}$, mais pas $A = (a_{i,j})_{\substack{1\leqslant j \leqslant n \\ 1 \leqslant i \leqslant p}}$ car dans cette dernière matrice le coefficient de place $(1,2)$ par exemple est $a_{2,1}$ !
+
+Formats particulier~:
+\begin{itemize}
+	\item Si $n=1$, il s'agit des matrices lignes $L = (a_1, \cdots, a_p)$ ;
+	\item Si $p=1$, il s'agit des matrices colonnes $C = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}$ ;
+	\item Si $n=p=1$, il s'agitdes scalaires $A=a_{1,1}=a$.
+\end{itemize}
+
+On note $\Mnp{n}{p}{\K}$ l'ensemble des matrices de format $n \times p$ et à coefficients dans le corps $\K$. Si $n=p$, on note simplement $\Mn{n}{\K}$ l'ensemble des matrices carrées de taille $n$ à coefficients dans $\K$.
+
+\subsection{Opérations}
+\paragraph{Somme et produit par un scalaire}
+$\Mnp{n}{p}{\K}$ est naturellement muni d'une structure de $\K$-espace vectoriel, au titre d'ensemble des familles d'éléments de $\K$ indexées par $I = \intervalleentier{1}{n} \times \intervalleentier{1}{p}$. Les lois en sont~: Quelque soient les matrices $a$ et $b$ dans $\Mnp{n}{p}{\K}$ et un scalaire $\lambda$~:
+\begin{align}
+	(a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} + (b_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} & = (a_{i,j}+b_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \\
+	\lambda  (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} &= (\lambda a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}
+\end{align}
+Le vecteur nul de $\Mnp{n}{p}{\K}$ est la matrice $0 = (0)_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ dont tous les coefficients sont nuls. La base la plus simple, appelée \emph{base canonique}, est $C = (E_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ où pour tout $(i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{p}$, $(E_{i,j})$ est la matrice de format $n \times p$ dont tous les coefficients sont nuls sauf celui de place $(i, j)$ qui vaut 1. On peut donc écrire~:
+\begin{equation}
+	\forall (i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{p} \qquad E_{i,j} = (\delta_{k,i} \delta_{l,j})_{\substack{1\leqslant k \leqslant n \\ 1 \leqslant l \leqslant p}}
+\end{equation}
+et si $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ alors $A = \sum_{i=1}^n \sum_{j=1}^p a_{i,j} E_{i,j}$. en conséquence on a la dimension de $\Mnp{n}{p}{\K}$~: $\Dim{\Mnp{n}{p}{\K}} = n \times p$.
+\begin{remarque}
+	La notation $E_{i,j}$ est ambigüe car elle n'indique pas le format de cette matrice et par exemple il y a autant de matrices $E_{1,2}$ que de formats de matrice (autant dire une infinité !). On devrait noter par exemple $E_{i,j}^{n\times p}$ pour qu'il n'y ait pas d'ambigüité mais on ne le fait pas quand le contexte est clair.
+\end{remarque}
+\paragraph{Produit de matrices}
+On définit, moins naturellement, le produit d'une matrice $n \times p$ par une matrice $p \times q$ de la façon suivante. Si $A  = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \in \Mnp{n}{p}{\K}$ et $B  = (b_{i,j})_{\substack{1\leqslant i \leqslant p \\ 1 \leqslant j \leqslant q}} \in \Mnp{p}{q}{\K}$, alors on appelle le produit de $A$ par $B$ noté $AB$, la matrice $AB=(c_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1\leqslant j \leqslant q}} \in \Mnp{n}{q}{\K}$ de format $n \times q$ dont le coefficient général est défini par la formule~:
+\begin{equation}
+	\forall (i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{q} \quad c_{i,j} = \sum_{k=1}^p a_{i,k}b_{k,j}.
+\end{equation}
+
+Il faut remarquer que $A$, $B$ et $AB$ sont trois matrices de formats différents en général et que le produit $AB$ n'est possible que si le nombre de colonnes de $A$ correspond au nombre de lignes de $B$.
+
+On dit qu'on fait un produit ligne à colonne puisque $c_{i,j}$ est le produit de la $i$\ieme{} ligne de $A$ par la $j$\ieme{} colonne de $B$, d'ailleurs on a l'égalité entre matrices $1 \times 1$~:
+\begin{equation}
+	\forall (i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{q} \quad (c_{i,j}) = (a_{i,1}, \cdots, a_{i,k}, \cdots, a_{i,p}) \begin{pmatrix} b_{1,j} \\ \vdots \\b_{k,j} \\ \vdots \\b_{p,j} \end{pmatrix}
+\end{equation}
+
+Produit des vecteurs de la base canonique de $\Mn{n}{\K}$~: Les matrices $E_{i,j}$ étant carrées de taille $n$ on a~:
+\begin{equation}
+	\forall i,j,k,l \in \intervalleentier{1}{n} \quad E_{i,j}E_{k,l} = \delta_{j,k} E_{i,l}
+\end{equation}
+
+Pour les trois lois présentées ci-dessus $(\Mn{n}{\K},+,\cdot;\times)$ est une $\K$-algèbre. Son élément unité est la matrice identité~:
+\begin{equation}
+	I_n = \begin{pmatrix}
+		1 & 0 & \cdots & 0 \\
+		0 & 1 & \ddots & \vdots \\
+		\vdots & \ddots & \ddots & 0 \\
+		0 & \cdots & 0 & 1
+	\end{pmatrix}
+\end{equation}
+
+Attention ! L'algèbre $\Mn{n}{\K}$ n'est ni commutative ($AB \neq BA$), ni intègre $AB$ nul n'implique pas que $A$ ou $B$ soit nul).
+
+\subsection{Matrice carrées inversibles}
+
+On définit le groupe linéaire d'ordre $n$ par~:
+\begin{equation}
+	\GLn{n}{K} = \enstq{A \in \Mn{n}{\K}}{\exists B \in \Mn{n}{\K} \ AB=BA=I_n}
+\end{equation}
+C'est le groupe des éléments inversibles de l'anneau $(\Mn{n}{\K}, +, \times)$.
+
+Remarquez que l'interprétation à l'aide des application (voir plus loin) montre que si une matrice admet un inverse à droite alors cet inverse est aussi inverse à gauche et donc~:
+\begin{equation}
+	\GLn{n}{K} = \enstq{A \in \Mn{n}{\K}}{\exists B \in \Mn{n}{\K} \ AB=I_n}
+\end{equation}
+
+\section{Matrice d'une application linéaire}
+\subsection{Définition et première propriété}
+
+Soient $E$ et $F$ des $\K$ -espaces vectoriels de dimension finie tels que $\Dim{E}=p$ et $\Dim{F}=n$. Si $f\in \Lin{E}{F}$ est une application linéaire de $E$ dans $F$, si $e=(e_i)_{i\leqslant p}$ est une base de $E$ et $e'=(e'_i)_{i\leqslant n}$ est une base de $F$, alors on appelle \emph{matrice de $f$ dans la base $e$ de $E$ et $e'$ de $F$}, la matrice $A=(a_{i,j})_{\substack{i \in \intervalleentier{1}{n} \\ j \in \intervalleentier{1}{p}}} \in \Mnp{n}{p}{\K}$ telle que $a_{i,j}$, le coefficient de place $(i,j)$, est la $i$\ieme coordonnée dans $e'$ du vecteur $f(e_j)$.
+	
+Autrement dit~:
+\begin{equation}
+	\forall j \in \intervalleentier{1}{p} \quad f(e_j) = \sum_{i=1}^n a_{i,j} e'_i
+\end{equation}
+ou encore~: la $j$\ieme colonne de $A$ donne les coordonnées de $f(e_j)$ dans la base $e'$ de $F$.
+
+On écrit $A = (a_{i,j})_{\substack{i \in \intervalleentier{1}{n} \\ j \in \intervalleentier{1}{p}}} = \M{f}{e,e'}$ et si $E=F$ et $e=e'$ : $A = (a_{i,j})_{\substack{i \in \intervalleentier{1}{n}\\ j \in \intervalleentier{1}{n}}} = \M{f}{e}$.
+
+Attention ! L'application $f$ étant donnée, elle admet autant de matrice qu'il existe de bases dans $E$ et dans $F$. Donc les phrases du style "soit $A$ la matrice de $f$" sans préciser les bases n'ont aucun sens.
+
+\paragraph{Utilisation}
+Cette matrice sert, pour tout $x \in E$, à calculer les coordonnées $Y$ de $f(x)$ dans la base $e'$ en fonction de celles de $x$ dans la base $e$ comme suit~:
+
+Si $A = \M{f}{e,e'}$, $x \rightsquigarrow_{e} X$ et $f(x) \rightsquigarrow_{e'} Y$, alors $Y=AX$, ou encore les \emph{expressions analytiques} de $f$ dans les bases $e$ et $e'$~:
+\begin{equation}
+	f~:\left\{ \begin{array}{llllllll}
+		y_1 &= a_{1,1} x_1 &+ a_{1,2} x_2 &+ \cdots &+ a_{1,j} x_{j} &+ \cdots &+ a_{1,p-1} x_{p-1} &+ a_{1,p} x_p \\
+		y_2 &= a_{2,1} x_1 &+ a_{2,2} x_2 &+ \cdots &+ a_{2,j} x_{j} &+ \cdots &+ a_{2,p-1} x_{p-1} &+ a_{2,p} x_p \\
+		\cdots \\
+		y_i &= a_{i,1} x_1 &+ a_{i,2} x_2 &+ \cdots &+ a_{i,j} x_{j} &+ \cdots &+ a_{i,p-1} x_{p-1} &+ a_{i,p} x_p \\
+		\cdots \\
+		y_{n-1} &= a_{n-1,1} x_1 &+ a_{n-1,2} x_2 &+ \cdots &+ a_{n-1,j} x_{j} &+ \cdots &+ a_{n-1,p-1} x_{p-1} &+ a_{n-1,p} x_p \\
+		y_n &= a_{n,1} x_1 &+ a_{n,2} x_2 &+ \cdots &+ a_{n,j} x_{j} &+ \cdots &+ a_{n,p-1} x_{p-1} &+ a_{n,p} x_p \\
+	\end{array}
+\right.
+\end{equation}
+Expressions dans lesquelles la matrice $A$ apparaît naturellement.
+
+\subsection{Composition d'application linéaires}
+Soient $E$, $F$ et $G$ des $\K$-espaces vectoriels de dimension finie tels que $\Dim{E}=q$, $\Dim{F}=p$ et $\Dim{G}=n$, et $e=(e_i)_{i\leqslant q}$ une base de $E$, $e'=(e'_i)_{i\leqslant p}$ est une base de $F$,  $e''=(e''_i)_{i\leqslant n}$ est une base de $G$. On a pour tous $f \in \Lin{E}{F}$ et tous $g\in\Lin{F}{G}$~:
+\begin{equation}
+	\M{g\circ f}{e,e''} = \M{g}{e',e''} \times \M{f}{e,e'}.
+\end{equation}
+
+\begin{remarque}
+	C'est pour obtenir ce résultat que l'on a défini le produit des matrices ligne à colonne et c'est ce résultat qui permet de récupérer sans calculs que $\Mn{n}{\K}$ est une algèbre, sachant que $\Endo{E}$ en est une.
+\end{remarque}
+
+\subsection{Isomorphismes}
+Si on fixe $e=(e_1, \cdots, e_p)$ une base de $E$ et $e'=(e'_1, \cdots, e'_n)$ une base de $F$ alors l'application suivante est un \emph{isomorphisme d'espaces vectoriels}~:
+\begin{equation}
+	\fonction{m}{\Lin{E}{F}}{\Mnp{n}{p}{\K}}{f}{\M{f}{e,e'}}.
+\end{equation}
+En particulier~:
+\begin{itemize}
+	\item $m$ est linéaire~: Quel que soient un scalaire $\lambda$ et deux applications linéaire $f$ et $g$ de $E$ dans $F$, $\M{\lambda f + g}{e,e'} = \lambda \M{f}{e,e'} + \M{g}{e,e'}$;
+	\item les bases $e$ et $e'$ étant choisies, se donner un homomorphisme de $E$ dans $F$ équivaut à se donner une matrice à $n$ lignes et $p$ colonnes.
+\end{itemize}
+
+Si on fixe $e=(e_1, \cdots, e_p)$ une base de $E$ alors l'application suivante est un \emph{isomorphisme de groupes}~:
+\begin{equation}
+	\fonction{m}{\GL{E}}{\Mn{n}{\K}}{f}{\M{f}{e}}.
+\end{equation}
+En particulier~:
+\begin{itemize}
+	\item Quelque soient les automorphismes $f$ et $g$ de $E$~: $\M{f\circ g}{e} = \M{f}{e} \times \M{g}{e}$;
+	\item la base $e$ étant choisie, se donner un automorphisme de $E$ équivaut à se donner une matrice carrée inversible de taille $n$.
+\end{itemize}
+
+\section{Changement de base}
+\subsection{Matrices de passage}
+\begin{defdef}[Matrice de passage]
+	Si $e=(e_1, \cdots, e_n)$ et $e'=(e'_1, \cdots, e'_n)$ sont des bases de $E$, la matrice de passage de $e$ à $e'$ est la matrice carrée de taille $n$ dont la $j$\ieme colonne donne les coordonnées de $e'_j$ dans la base $e$. On la note $\Pass{e}{e'}$ ou $P_e^{e'}$.
+\end{defdef}
+
+\emph{Interprétation~:} cette définition donne deux visions de la matrice de passage $\Pass{e}{e'}$~:
+\begin{enumerate}
+	\item $\Pass{e}{e'} = \M{\Id_E}{e',e}$;
+	\item $\Pass{e}{e'} = \M{f}{e}$, où $f$ est l'unique endomorphisme de $E$ tel que pour tout $i \in \intervalleentier{1}{n}$, $f(e_i)=e'_i$.
+\end{enumerate}
+
+On en déduit alors aisément les deux résultats suivants fondamentaux~:
+\begin{itemize}
+	\item $\Pass{e}{e'} \in \GLn{n}{\K}$ et son inverse est $\Pass{e}{e'}^{-1} = \Pass{e'}{e}$;
+	\item Soit une troisième base $e''$ de $E$, alors $\Pass{e}{e''} = \Pass{e}{e'} \times \Pass{e'}{e''}$
+\end{itemize}
+\subsection{Changement de base pour les vecteurs (ou les points)}
+Avec les notations $P = \Pass{e}{e'}$, $X$ les coordonnées de $x \in E$ dans la base $e$, $X'$ les coordonnées de $x \in E$ dans la base $e'$, on a la formule de passage~:
+\begin{equation}
+	\underbrace{X}_{\in \Mnp{n}{1}{\K}} = \overbrace{P}^{\in \GLn{n}{\K}} \times \underbrace{X'}_{\in \Mnp{n}{1}{\K}}
+\end{equation}
+
+Notez que ces formules de changement de base expriment les anciennes coordonnées en fonction des nouvelles.
+
+Si maintenant $E$ est considéré comme un espace affine rapporté à deux repères $\mathcal{R} = \{a;e\}$ et $\mathcal{R'} = \{a';e'\}$ alors si $\Omega$ est la colonne des coordonnées de la nouvelle origine $a'$ dans l'ancien repère, on a~:
+\begin{equation}
+	X = \Omega +PX'.
+\end{equation}
+
+\subsection{Changement de base pour les applications linéaires}
+Soient $E$ et $F$ deux $\K$-espaces vectoriel de dimension finie respectives $p$ et $n$. Soient $e$ et $e'$ des bases de $E$, $f$ et $f'$ des base de $F$, $P = \Pass{e}{e'} \in \GLn{p}{\K}$ et $Q = \Pass{f}{f'} \in \GLn{n}{\K}$.
+Pour tout $u \in \Lin{E}{F}$, si on pose $A = \M{u}{e,f}$ et $B = \M{u}{e',f'}$, alors on a~:
+\begin{equation}
+	B=Q^{-1} A P.
+\end{equation}
+Cas particulier~: Pour tout endomorphisme $u \in\Endo{E}$, on prend en général la même base au départ et à l'arrivée ($e=f$ et $e'=f'$) et la formule de changement de base se simplifie~: si $P = \Pass{e}{e'}$, si on pose $A = \M{u}{e}$ et $B = \M{u}{e'}$, alors on a~:
+\begin{equation}
+	B=P^{-1} A P.
+\end{equation}
