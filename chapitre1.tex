@@ -1,0 +1,134 @@
+\addtocounter{chapter}{-2}
+\chapter{Compléments d'algèbre linéaire}
+\minitoc
+\minilof
+\minilot
+
+Dans tout le chapitre $\K$ désigne l'un des corps $\R$ ou $\C$.
+\section{Structures}
+\subsection{Applications à valeur dans un espace vectoriel}
+Soit $\S$ un ensemble quelconque et $(E,+,\cdot)$ un $\K$-espace vectoriel. L'ensemble $\F(\S,E) = E^{\S}$ des applications de $\S$ dans $E$ est naturellement muni des lois interne et externe suivantes, encore notées $+$ et $\cdot$~:
+\begin{itemize}
+	\item pour $f$ et $g$ dans $\F(\S,E)$, on définit une application $f+g$ de $\S$ dans $E$ telle que~:
+	\begin{equation}
+		\forall x \in \S \quad (f+g)(x) = f(x)+g(x)
+	\end{equation}
+	\item pour $f$ dans $\F(\S,E)$ et $\lambda$ dans $\K$, on définit l'application $\lambda f$ par~:
+	\begin{equation}
+		\forall x \in \S \quad (\lambda \cdot f)(x) = \lambda \cdot f(x)
+	\end{equation}
+\end{itemize}
+On vérifie alors que $(\F(\S,E), +, \cdot)$ est un $\K$-espace vectoriel.
+\section{Produit d'espaces vectoriels}
+Soient $E_1, \cdots, E_p$ des $\K$-espaces vectoriels dont les lois sont toutes notées $+$ et $\cdot$ bien qu'elles soient différentes a priori. Le produit cartésien $E = E_1 \times \cdots \times E_p$ est muni des lois internes suivantes~:
+\begin{align}
+	\forall (x_1, \cdots, x_p) \in E \ \forall (y_1, \cdots, y_p) \in E \quad (x_1, \cdots, x_p) + (y_1, \cdots, y_p) &\overset{\text{def}}{=} (x_1+y_1, \cdots, x_p+y_p) \\
+	\forall (x_1, \cdots, x_p) \in E \ \forall \lambda \in \K \quad \lambda (x_1, \cdots, x_p) &\overset{\text{def}}{=} (\lambda x_1, \cdots, \lambda x_p)
+\end{align}
+On vérifie alors que $E$ muni de ces deux lois est un $\K$-espace vectoriel, appelé espace vectoriel produit.
+\section{Algèbre sur un corps}
+Soit $\A$ un ensemble, $+$ et $\times$ des lois internes sur $\A$, $\cdot$ une loi externe sur $\A$ à opérateurs dans $\K$.
+\begin{defdef}[Algèbre]
+	$(\A,+,\times,\cdot)$ est une $\K$-algèbre si et seulement si~:
+	\begin{itemize}
+		\item $(\A,+,\cdot)$ est un $\K$-espace vectoriel
+		\item $(\A,+,\times)$ est un anneau
+		\item les deux produits sont compatibles~:
+		\begin{equation}
+			\forall x,y \in E \ \forall \lambda \in \K \quad (\lambda \cdot x) \times y = \lambda \cdot (x \times y) = x \times (\lambda \cdot y)
+		\end{equation}
+	\end{itemize}
+\end{defdef}
+
+Ces propriétés sont équivalentes aux douze propriétés suivantes~:
+\begin{itemize}
+	\item $(\A, +)$ est un groupe commutatif (cinq axiomes)~:
+	\begin{itemize}
+		\item[--- \textbf{Loi de composition interne}] Pour tous $x$ et $y$ de $\A$, $x+y$ est dans $\A$ ;
+		\item[--- \textbf{Associativité}] Pour tous $x, y, z \in \A$, $(x+y)+z = x+(y+z)$ ;
+		\item[--- \textbf{Neutre}] $0$ est le neutre pour $+$~: Pour tout $x \in \A$, $x+0=0+x=x$ ;
+		\item[--- \textbf{Symétrique}] Pour tout $x$ de $\A$, il existe un élément $-a \in \A$ tel que $a+(-a) = -a+a = 0$.
+		\item[--- \textbf{Commutativité}] Pour tous $x,y \in \A$, $x+y=y+x$
+	\end{itemize}
+	\item les  trois axiomes d'un $\K$-espace vectoriel~:
+	\begin{itemize}
+		\item $(\A, +)$ est un groupe commutatif (voir ci-dessus)
+		\item La loi $\cdot$ est distributive à gauche par rapport à la loi $+$ de $\A$ et à droite par rapport à la loi $+$ du corps $\K$~:
+		\begin{equation}
+			\forall \lambda, \mu \in \K \ \forall x,y \in \A \quad \lambda \cdot (x+y) = \lambda \cdot x + \lambda \cdot y \quad (\lambda+\mu) \cdot x = \lambda \cdot x + \mu \cdot x 
+		\end{equation}
+	   	\item La loi $\cdot$ de $\A$ possède une associativité ``mixte'' avec la loi $\cdot$ de $\K$~:
+	   	\begin{equation}
+	   			\forall \lambda, \mu \in \K \ \forall x \in \A \quad (\lambda \cdot_\K \mu)\cdot_\A x = \lambda \cdot_\A (\mu \cdot_\A x)	
+	   	\end{equation}
+   		\item La loi $\cdot$ de $\A$ possède un élément neutre noté $1$~:
+   			\begin{equation}
+   			\forall x \in \A \quad 1 \cdot x = x \cdot 1 = x
+   		\end{equation}
+	\end{itemize}
+	\item $\times$ est associative ;
+	\item $\times$ est distributive par rapport à $+$ ;
+	\item La loi $\times$ possède un élément neutre $e$ ;
+	\item les deux produits sont compatibles
+			\begin{equation}
+				\forall x,y \in E \ \forall \lambda \in \K \quad (\lambda \cdot x) \times y = \lambda \cdot (x \times y) = x \times (\lambda \cdot y)
+			\end{equation}	
+\end{itemize}
+Si la deuxième loi interne $\times$ est commutative, l'algèbre est commutative. Dans une algèbre $\A$, on a les mêmes règles de calculs que dans un anneau et dans un $\K$-espace vectoriel~:
+\begin{align}
+	\forall x \in \A &\quad 0_\A \times x = x \times 0_\A = 0_\A \\
+	\forall x,y \in \A &\quad (-x) \times y = x \times (-y) = -(x\times y) \\
+	\forall x \in \A \forall \lambda \in \K &\quad 0_\K \cdot x = \lambda \cdot 0_\A = 0_\A \\
+	\forall x \in \A \forall \lambda \in \K &\quad -(\lambda \cdot x) = \lambda \cdot (-x) = (-\lambda)\cdot x
+\end{align}
+et la notation des itérés de $x$~: $nx$ avec $n \in \Z$ et $x^p$ avec $p \in \N$ ($0x=0_\A$ et $x^0=1_\A$).
+
+Exercice~: Montrer que $nx = n \cdot x = (n1_\A) \times x$.
+
+\paragraph{Exemples usuels}
+$\K[X]$ muni des lois communes est une algèbre commutative. $(\Endo{E},+\circ,\cdot)$ et $(\Mn{n}{\K}, +, \times, \cdot)$ sont des algèbres non commutatives. L'ensemble des applications de $I$ dans $\K$, ou encore les familles de scalaires indexées par un ensemble $I$ sont des algèbres. En particulier $\R^\N$ (l'ensemble des suites réelles) et $\F(\R,\R) = \R^\R$ sont des $\R$-algèbres.
+
+\paragraph{Sous-algèbre}
+\begin{defdef}
+	Soit $(\A,+,\times,\cdot)$ une $\K$-algèbre et $\B \subset A$ ;
+	$\B$ est une sous-algèbre de $A$ si et seulement si $\B$ est un sous-espace vectoriel et un sous-anneau de $\A$ si et seulement si $\B$ est un sous-espace vectoriel de $\A$ et $1_\A \in \B$ et pour tous $x, y \in \B, x \times y \in \B$.
+\end{defdef}
+
+$\B$ muni des lois induites est alors une $\K$-algèbre. Une caractérisation équivalente en est~:
+$\B$ est une sous-algèbre de $\A$  si et seulement si $1_\A \in \B$ et pour tous $x, y \in \B$ et tout $\lambda \in \K$ , $x \times y \in \B$, $\lambda x+y \in \B$.
+
+\emph{Exemples}~:
+\begin{itemize}
+	\item $\classe{0}(\R,\R)$ est une sous-algèbre de $\R^\R$
+	\item l'ensemble des suites bornées et celui des suites convergentes ailleurs qu'en zéro (puisque la suite égale à $1$ n'est pas dedans) sont bien des sous-algèbre de $\R^\N$
+\end{itemize}
+\paragraph{Morphisme d'algèbre}
+\begin{defdef}
+	Soient  $(\A,+,\times,\cdot)$ et $(\B,+,\times,\cdot)$ deux $\K$-algèbres et $\phi$ de $\A$ vers $\B$, alors $\phi$ est un morphisme d'algèbre si et seulement si c'est un morphisme d'espaces vectoriel et un morphisme d'anneaux.
+\end{defdef}
+Ainsi, $\phi$ est un morphisme d'algèbre si et seulement si~:
+\begin{align}
+	\forall x,y \in \A \ \forall \lambda \in \K \quad \phi(\lambda x+y) &= \lambda\phi(x)+\phi(y) \\
+	\forall x,y \in \A \quad \phi(x \times y) &= \phi(x) \times \phi(y) \\
+	\phi(1_\A) &= 1_\B
+\end{align}
+
+\emph{Ppté}~: Image directe et réciproque d'une sous-algèbre, \ldots
+
+\emph{Exemple fondamental}~: Évaluation des polynômes de $\K[X]$ en $a \in \A$
+\begin{prop}
+	Soit 
+	\begin{equation}
+		\fonction{\Phi}{\K[X]}{\A}{P = \sum_{i=0}^d \lambda_i X^i}{\Phi(P) = \sum_{i=0}^d\lambda_i a^i=P(A)},
+	\end{equation} 
+	alors~:
+	\begin{enumerate}
+		\item $\Phi$ est un morphisme de $\K$-algèbres ;
+		\item $\Image{\Phi}$ est une sous-algèbre commutative de $\A$ noté $\K[a]$ (polynômes en $a$) ;
+		\item $\K[a]$ est la plus petite sous-algèbre de $\A$ contenant $a$. $\K[a]$ est la sous-algèbre engendrée par $a$.
+	\end{enumerate}
+\end{prop}
+
+\section{Familles de vecteurs}
+\subsection{Définition}
+Soient $I$ et $E$ des ensembles non vides.
