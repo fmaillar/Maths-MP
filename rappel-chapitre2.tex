@@ -1,280 +1,199 @@
-\chapter{Déterminants}
-\begin{remarque}[Remarque préliminaire]
-	Ces rappels de cours de Maths-Sup ne sont pas nécessairement dans l'ordre qu'imposerait une présentation complète de la théorie. 
+\chapter{Matrices}
+\minitoc
+\minilof
+\minilot
+
+\section{Présentation}
+
+\subsection{Définitions}
+Une matrice de format $n \times p$ et à coefficients dans le corps $\K$ est une famille $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ d'éléments de $\K$ indexée par $\intervalleentier{1}{n} \times \intervalleentier{1}{p}$. On représente cette famille sous la forme d'un tableau~:
+\begin{equation}
+	A = \begin{pmatrix}
+		a_{1,1} & a_{1,2} & \cdots & a_{1,p} \\
+		a_{2,1} & a_{2,2} & \cdots & a_{2, p} \\
+		\vdots & \vdots &  & \vdots \\
+		a_{n,1} & a_{n,2} & \cdots & a_{n,p}
+	\end{pmatrix}
+\end{equation}
+dans lequel $a_{i,j}$ est le coefficient se trouvant à l'intersection de la $i$\ieme{} ligne et de la $j$\ieme{} colonne, on dit que c'est le coefficient de la place $(i, j)$ dans $A$.
+
+\begin{remarque}
+	Il est fondamental dans les notations de bien distinguer~:
+	\begin{itemize}
+		\item $a_{i,j}$ qui est un élément de $\K$ pour un certain couple $(i, j)$
+		\item $(a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ qui est un élément de $\Mnp{n}{p}{\K}$ et où $(i, j)$ qui est muet, n'a pas à être introduit \dots{}
+	\end{itemize}
 \end{remarque}
-\section{Groupe symétrique}
-\begin{defdef}[permutation]
-	On appelle \emph{permutation} sur $n$ éléments, toute bijection $\sigma$ de $\intervalleentier{1}{n}$ sur lui-même. 
-\end{defdef}
+D'ailleurs, si $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$, on a aussi bien $A = (a_{k,l})_{\substack{1\leqslant k \leqslant n \\ 1 \leqslant l \leqslant p}}$, mais pas $A = (a_{i,j})_{\substack{1\leqslant j \leqslant n \\ 1 \leqslant i \leqslant p}}$ car dans cette dernière matrice le coefficient de place $(1,2)$ par exemple est $a_{2,1}$ !
 
-On peut représenter une permutation $\sigma$ de la façon suivante $\sigma = 
-\begin{pmatrix}
-	1 & 2 & \cdots & n \\
-	\sigma(1)& \sigma(2)  &\cdots  & \sigma(n) 
-\end{pmatrix}
-$.
+Formats particulier~:
+\begin{itemize}
+	\item Si $n=1$, il s'agit des matrices lignes $L = (a_1, \cdots, a_p)$ ;
+	\item Si $p=1$, il s'agit des matrices colonnes $C = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}$ ;
+	\item Si $n=p=1$, il s'agitdes scalaires $A=a_{1,1}=a$.
+\end{itemize}
 
-L'ensemble des permutations de $\intervalleentier{1}{n}$ est un groupe pour la loi $\circ$ de composition des applications de $\intervalleentier{1}{n}$ dans lui-même. On note $\S_n$ et on l'appelle \emph{le groupe symétrique de degré $n$}. Son cardinal vaut $\Card \S_n = n!$.
+On note $\Mnp{n}{p}{\K}$ l'ensemble des matrices de format $n \times p$ et à coefficients dans le corps $\K$. Si $n=p$, on note simplement $\Mn{n}{\K}$ l'ensemble des matrices carrées de taille $n$ à coefficients dans $\K$.
 
-\begin{defdef}[cycle]
-	Un \emph{cycle} de longueur $l \geqslant 2$ est une permutation $\gamma$ telle qu'il existe $i_1$, $i_2$, \ldots, $i_l$ distincts dans $\intervalleentier{1}{n}$ vérifiant~:
-	\begin{align}
-		\forall i \in \intervalleentier{1}{n} \setminus \{i_k\}_{k \in \intervalleentier{1}{l}} \quad \gamma(i)&=i \\
-		\forall k \in \intervalleentier{1}{l-1} \quad \gamma(i_k) &= i_{k+1} \\
-		\gamma(i_l) &= i_l.
-	\end{align}
-\end{defdef}
-Autrement dit $\gamma$ laisse fixes les entiers différents de $i_1$, $i_2$, \ldots, $i_l$ et permute circulairement les $i_1$, $i_2$, \ldots, $i_l$~:
+\subsection{Opérations}
+\paragraph{Somme et produit par un scalaire}
+$\Mnp{n}{p}{\K}$ est naturellement muni d'une structure de $\K$-espace vectoriel, au titre d'ensemble des familles d'éléments de $\K$ indexées par $I = \intervalleentier{1}{n} \times \intervalleentier{1}{p}$. Les lois en sont~: Quelque soient les matrices $a$ et $b$ dans $\Mnp{n}{p}{\K}$ et un scalaire $\lambda$~:
+\begin{align}
+	(a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} + (b_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} & = (a_{i,j}+b_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \\
+	\lambda  (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} &= (\lambda a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}
+\end{align}
+Le vecteur nul de $\Mnp{n}{p}{\K}$ est la matrice $0 = (0)_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ dont tous les coefficients sont nuls. La base la plus simple, appelée \emph{base canonique}, est $C = (E_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ où pour tout $(i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{p}$, $(E_{i,j})$ est la matrice de format $n \times p$ dont tous les coefficients sont nuls sauf celui de place $(i, j)$ qui vaut 1. On peut donc écrire~:
 \begin{equation}
-	i_1 \overset{\gamma}{\longmapsto} i_2 \overset{\gamma}{\longmapsto} i_3 \overset{\gamma}{\longmapsto} \cdots i_{l-1} \overset{\gamma}{\longmapsto} i_l.
+	\forall (i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{p} \qquad E_{i,j} = (\delta_{k,i} \delta_{l,j})_{\substack{1\leqslant k \leqslant n \\ 1 \leqslant l \leqslant p}}
 \end{equation}
-On note souvent $\gamma = (i_1, i_2, \cdots, i_l)$.
-
-Un cycle de longueur 2 est appelé une \emph{transposition}~: la transposition $\sigma = (i_1, i_2)$ échange $i_1$ et $i_2$ et laisse fixes les $n-2$ autres entiers de $\intervalleentier{1}{n}$.
-
-On peut montrer que toute permutation sur $n$ éléments est la composée de transpositions, mais l'écriture n'est pas unique.
-
-\begin{defdef}[Signature d'une permutation]
-	Soit une permutation $\sigma \in \S_n$. Le nombre d'inversions de $\sigma$ est~:
-	\begin{equation}
-		I_\sigma = \Card\enstq{(i,j)\in\intervalleentier{1}{n}^2}{i<j \ \text{et} \ \sigma(i)>\sigma(j)}.
-	\end{equation}
-	La signature de $\sigma$ est $\epsilon_\sigma = (-1)^{I_\sigma}$.
-\end{defdef}
-On dit que $\sigma$ est paire si sa signature vaut $1$ et impaire si elle vaut $-1$. La signature d'un cycle $\gamma$ de longueur $l$ vaut $\epsilon_\gamma = (-1)^{l-1}$. Les transpositions sont des permutations impaires.
-
-L'application $\fonction{\epsilon}{(\S_n, \circ)}{(\{-1,1\}, \times)}{\sigma}{\epsilon_\sigma}$ est un morphisme de groupe~:
+et si $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ alors $A = \sum_{i=1}^n \sum_{j=1}^p a_{i,j} E_{i,j}$. en conséquence on a la dimension de $\Mnp{n}{p}{\K}$~: $\Dim{\Mnp{n}{p}{\K}} = n \times p$.
+\begin{remarque}
+	La notation $E_{i,j}$ est ambigüe car elle n'indique pas le format de cette matrice et par exemple il y a autant de matrices $E_{1,2}$ que de formats de matrice (autant dire une infinité !). On devrait noter par exemple $E_{i,j}^{n\times p}$ pour qu'il n'y ait pas d'ambigüité mais on ne le fait pas quand le contexte est clair.
+\end{remarque}
+\paragraph{Produit de matrices}
+On définit, moins naturellement, le produit d'une matrice $n \times p$ par une matrice $p \times q$ de la façon suivante. Si $A  = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \in \Mnp{n}{p}{\K}$ et $B  = (b_{i,j})_{\substack{1\leqslant i \leqslant p \\ 1 \leqslant j \leqslant q}} \in \Mnp{p}{q}{\K}$, alors on appelle le produit de $A$ par $B$ noté $AB$, la matrice $AB=(c_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1\leqslant j \leqslant q}} \in \Mnp{n}{q}{\K}$ de format $n \times q$ dont le coefficient général est défini par la formule~:
 \begin{equation}
-	\forall \sigma, \sigma' \in \S_n \quad \epsilon_{\sigma \circ \sigma'} = \epsilon_\sigma \epsilon_{\sigma'},
+	\forall (i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{q} \quad c_{i,j} = \sum_{k=1}^p a_{i,k}b_{k,j}.
 \end{equation}
-en particulier $\epsilon_{\Id} = 1$, donc $\epsilon_{\sigma^{-1}} = \epsilon_\sigma$.
 
-Enfin, le noyau de ce morphisme $\A_n = \ker(\epsilon) = \enstq{\sigma \in \S_n}{\epsilon_\sigma=1}$ est le sous-groupe des permutations paires de $\intervalleentier{1}{n}$; on l'appelle le \emph{groupe alterné} de degré $n$, son cardinal vaut $\Card \A_n = \frac{n!}{2}$.
+Il faut remarquer que $A$, $B$ et $AB$ sont trois matrices de formats différents en général et que le produit $AB$ n'est possible que si le nombre de colonnes de $A$ correspond au nombre de lignes de $B$.
 
-En effet, il y autant de permutations paires que d'impaires car si $\tau$ est un transposition quelconque, l'application suivante est clairement bijective~:
+On dit qu'on fait un produit ligne à colonne puisque $c_{i,j}$ est le produit de la $i$\ieme{} ligne de $A$ par la $j$\ieme{} colonne de $B$, d'ailleurs on a l'égalité entre matrices $1 \times 1$~:
 \begin{equation}
-	\fonction{\Phi}{\A_n}{\S_n\setminus\A_n}{\sigma}{\sigma \circ \tau},
+	\forall (i,j) \in \intervalleentier{1}{n} \times \intervalleentier{1}{q} \quad (c_{i,j}) = (a_{i,1}, \cdots, a_{i,k}, \cdots, a_{i,p}) \begin{pmatrix} b_{1,j} \\ \vdots \\b_{k,j} \\ \vdots \\b_{p,j} \end{pmatrix}
 \end{equation}
-de réciproque
+
+Produit des vecteurs de la base canonique de $\Mn{n}{\K}$~: Les matrices $E_{i,j}$ étant carrées de taille $n$ on a~:
 \begin{equation}
-	\fonction{\Phi^{-1}}{\S_n\setminus\A_n}{\A_n}{s}{s \circ \tau}.
+	\forall i,j,k,l \in \intervalleentier{1}{n} \quad E_{i,j}E_{k,l} = \delta_{j,k} E_{i,l}
 \end{equation}
-\section{Formes $n$-linéaires alternées en dimension $n$}
-Dans toute la suite $E$ désignera un $\K$-espace vectoriel de dimension $n$.
 
-\begin{defdef}[forme $n$-linéaire alternée]
-	Une application $\Phi : E^n \longrightarrow \K$ est appelée une forme $n$-linéaire alternée si~:
-	\begin{enumerate}
-		\item Pour tout $i \in \intervalleentier{1}{n}$ et tous vecteurs $(x_k)_{k \in \intervalleentier{1}{n} \setminus \{i\}}$, l'application~:
-		\begin{equation}
-			\fonction{\Phi_i}{E}{\K}{x}{\Phi(x_1,\cdots,x_{i-1},x,x_{i+1},\cdots,x_n)} \in E^*,
-		\end{equation}
-		c'est-à-dire que $\Phi_i$ est une forme linéaire ;
-		\item
-		\begin{equation}
-			\forall (x_1, \cdots, x_n) \in E^n \ (\exists i,j \in \intervalleentier{1}{n} \ i \neq j \ \text{et} \ x_i=x_j \implies \Phi(x_1, \cdots, x_n) = 0) 
-		\end{equation}		
-	\end{enumerate}
-\end{defdef}
+Pour les trois lois présentées ci-dessus $(\Mn{n}{\K},+,\cdot;\times)$ est une $\K$-algèbre. Son élément unité est la matrice identité~:
+\begin{equation}
+	I_n = \begin{pmatrix}
+		1 & 0 & \cdots & 0 \\
+		0 & 1 & \ddots & \vdots \\
+		\vdots & \ddots & \ddots & 0 \\
+		0 & \cdots & 0 & 1
+	\end{pmatrix}
+\end{equation}
 
-\begin{prop}
-	Soit $\Phi$ une forme $n$-linéaire alternée sur $E$. On a~:
-	\begin{enumerate}
-		\item Pour tous $i < j$ dans $\intervalleentier{1}{n}$~:
-		\begin{equation}
-			\forall (x_1, \cdots, x_n) \in E^n \quad \Phi(x_1, \cdots, x_i, \cdots, x_j, \cdots,x_n) = - \Phi(x_1, \cdots, x_j, \cdots, x_i, \cdots,x_n) ;
-		\end{equation}
-		\item 
-		\begin{equation}
-			\forall (x_1, \cdots, x_n) \in E^n \forall \sigma \in \S_n \quad \Phi(x_{\sigma(i)})_{i \in \intervalleentier{1}{n}} = \epsilon_\sigma \Phi(x_{i})_{i \in \intervalleentier{1}{n}}
-		\end{equation}
-	\end{enumerate}
-\end{prop}
+Attention ! L'algèbre $\Mn{n}{\K}$ n'est ni commutative ($AB \neq BA$), ni intègre $AB$ nul n'implique pas que $A$ ou $B$ soit nul).
 
-\section[Déterminant]{Déterminant (dans une base) d'une famille de $n$ vecteurs}
+\subsection{Matrice carrées inversibles}
 
-\begin{theo}
+On définit le groupe linéaire d'ordre $n$ par~:
+\begin{equation}
+	\GLn{n}{K} = \enstq{A \in \Mn{n}{\K}}{\exists B \in \Mn{n}{\K} \ AB=BA=I_n}
+\end{equation}
+C'est le groupe des éléments inversibles de l'anneau $(\Mn{n}{\K}, +, \times)$.
+
+Remarquez que l'interprétation à l'aide des application (voir plus loin) montre que si une matrice admet un inverse à droite alors cet inverse est aussi inverse à gauche et donc~:
+\begin{equation}
+	\GLn{n}{K} = \enstq{A \in \Mn{n}{\K}}{\exists B \in \Mn{n}{\K} \ AB=I_n}
+\end{equation}
+
+\section{Matrice d'une application linéaire}
+\subsection{Définition et première propriété}
+
+Soient $E$ et $F$ des $\K$ -espaces vectoriels de dimension finie tels que $\Dim{E}=p$ et $\Dim{F}=n$. Si $f\in \Lin{E}{F}$ est une application linéaire de $E$ dans $F$, si $e=(e_i)_{i\leqslant p}$ est une base de $E$ et $e'=(e'_i)_{i\leqslant n}$ est une base de $F$, alors on appelle \emph{matrice de $f$ dans la base $e$ de $E$ et $e'$ de $F$}, la matrice $A=(a_{i,j})_{\substack{i \in \intervalleentier{1}{n} \\ j \in \intervalleentier{1}{p}}} \in \Mnp{n}{p}{\K}$ telle que $a_{i,j}$, le coefficient de place $(i,j)$, est la $i$\ieme coordonnée dans $e'$ du vecteur $f(e_j)$.
 	
-	Soit $e$ une base de $E$. On a~:
-	\begin{enumerate}
-		\item Il existe une unique forme $n$-linéaire alternée que l'on note $\Det_e$ telle que~:
-		\begin{equation}
-			\Det_e(e_1, \cdots, e_n)=1;
-		\end{equation}
-	\item L'ensemble des formes $n$-linéaires alternées sur $E$ est une droite vectorielle et $\Det_e$ en est une base;
-	\item Si $e'$ est une autre base de $E$ alors $\Det_{e'} = \Det_{e'}(e) \Det_{e}$.
-	\end{enumerate}
-\end{theo}
-
-On peut même être plus précis. SI les vecteurs $x_1, \cdots, x_n$ se décomposent comme suit dans la base $e$~:
+Autrement dit~:
 \begin{equation}
-	\forall j \in \intervalleentier{1}{n} \quad x_j = \sum_{i=1}^n x_{i,j}e_i,
+	\forall j \in \intervalleentier{1}{p} \quad f(e_j) = \sum_{i=1}^n a_{i,j} e'_i
 \end{equation}
-alors~:
+ou encore~: la $j$\ieme colonne de $A$ donne les coordonnées de $f(e_j)$ dans la base $e'$ de $F$.
+
+On écrit $A = (a_{i,j})_{\substack{i \in \intervalleentier{1}{n} \\ j \in \intervalleentier{1}{p}}} = \M{f}{e,e'}$ et si $E=F$ et $e=e'$ : $A = (a_{i,j})_{\substack{i \in \intervalleentier{1}{n}\\ j \in \intervalleentier{1}{n}}} = \M{f}{e}$.
+
+Attention ! L'application $f$ étant donnée, elle admet autant de matrice qu'il existe de bases dans $E$ et dans $F$. Donc les phrases du style "soit $A$ la matrice de $f$" sans préciser les bases n'ont aucun sens.
+
+\paragraph{Utilisation}
+Cette matrice sert, pour tout $x \in E$, à calculer les coordonnées $Y$ de $f(x)$ dans la base $e'$ en fonction de celles de $x$ dans la base $e$ comme suit~:
+
+Si $A = \M{f}{e,e'}$, $x \rightsquigarrow_{e} X$ et $f(x) \rightsquigarrow_{e'} Y$, alors $Y=AX$, ou encore les \emph{expressions analytiques} de $f$ dans les bases $e$ et $e'$~:
 \begin{equation}
-	\Det_e(x_1, \cdots, x_n) = \sum_{\sigma \in \S_n} \epsilon_\sigma \prod_{i=1}^{n} x_{\sigma(i),i}
+	f~:\left\{ \begin{array}{llllllll}
+		y_1 &= a_{1,1} x_1 &+ a_{1,2} x_2 &+ \cdots &+ a_{1,j} x_{j} &+ \cdots &+ a_{1,p-1} x_{p-1} &+ a_{1,p} x_p \\
+		y_2 &= a_{2,1} x_1 &+ a_{2,2} x_2 &+ \cdots &+ a_{2,j} x_{j} &+ \cdots &+ a_{2,p-1} x_{p-1} &+ a_{2,p} x_p \\
+		\cdots \\
+		y_i &= a_{i,1} x_1 &+ a_{i,2} x_2 &+ \cdots &+ a_{i,j} x_{j} &+ \cdots &+ a_{i,p-1} x_{p-1} &+ a_{i,p} x_p \\
+		\cdots \\
+		y_{n-1} &= a_{n-1,1} x_1 &+ a_{n-1,2} x_2 &+ \cdots &+ a_{n-1,j} x_{j} &+ \cdots &+ a_{n-1,p-1} x_{p-1} &+ a_{n-1,p} x_p \\
+		y_n &= a_{n,1} x_1 &+ a_{n,2} x_2 &+ \cdots &+ a_{n,j} x_{j} &+ \cdots &+ a_{n,p-1} x_{p-1} &+ a_{n,p} x_p \\
+	\end{array}
+\right.
 \end{equation}
+Expressions dans lesquelles la matrice $A$ apparaît naturellement.
 
-En conséquence du théorème on a aussi, si $e$ et $e'$ sont des bases de $E$~:
+\subsection{Composition d'application linéaires}
+Soient $E$, $F$ et $G$ des $\K$-espaces vectoriels de dimension finie tels que $\Dim{E}=q$, $\Dim{F}=p$ et $\Dim{G}=n$, et $e=(e_i)_{i\leqslant q}$ une base de $E$, $e'=(e'_i)_{i\leqslant p}$ est une base de $F$,  $e''=(e''_i)_{i\leqslant n}$ est une base de $G$. On a pour tous $f \in \Lin{E}{F}$ et tous $g\in\Lin{F}{G}$~:
 \begin{equation}
-	\Det_{e'}(e) \Det_{e}(e') = 1
+	\M{g\circ f}{e,e''} = \M{g}{e',e''} \times \M{f}{e,e'}.
 \end{equation}
-et la propriété-outil fondamentale~: Pour une base $e$ et une famille de vecteurs quelconques $X$ de $E$ on a l'équivalence~:
-la famille $X$ est libre si et seulement si son déterminant dans la base $e$ est non nul $\Det_e(X) \neq 0$.
 
-\section{Déterminant d'un endomorphisme en dimension finie}
-Ce théorème sert aussi de définition
-\begin{theo}
-	Soit $f \in \Endo{E}$. Il existe un unique scalaire $\delta$ appelée déterminant de $f$ tel que pour toute base $e$ de $E$ et tous vecteurs $x_1, \cdots, x_n$ de $E$~:
-	\begin{equation}
-		\Det_e(f(x_1), \cdots, f(x_n)) = \delta \Det_{e}(x_1, \cdots x_n).
-	\end{equation}
-\end{theo}
-On retiendra avec des notations évidentes que~:
-\begin{align}
-	\Det_e(f(x_1), \cdots, f(x_n)) &= \Det f \Det_e(x_1, \cdots x_n) \\
-	\Det f &= \Det_e(f(e_1), \cdots, f(e_n))\\
-	\Det(f \circ g) &= \Det f \Det g \\
-	f \in \GL{E} &\iff \Det(f) \neq 0 \\
-	\forall f \in \GL{E} & \Det(f^{-1}) = \frac{1}{\Det(f)}
-\end{align}
+\begin{remarque}
+	C'est pour obtenir ce résultat que l'on a défini le produit des matrices ligne à colonne et c'est ce résultat qui permet de récupérer sans calculs que $\Mn{n}{\K}$ est une algèbre, sachant que $\Endo{E}$ en est une.
+\end{remarque}
 
-\section{Déterminant d'une matrice}
-\subsection{Définition et premières propriétés}
-\begin{defdef}
-	Soit $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}} \in \Mn{n}{\K}$ une matrice carrée à coefficients dans $\K$. On appelle le déterminant de $A$ le déterminant de ses $n$ vecteurs colonnes dans la base canonique de $\Mnp{n}{1}{\K}$.
+\subsection{Isomorphismes}
+Si on fixe $e=(e_1, \cdots, e_p)$ une base de $E$ et $e'=(e'_1, \cdots, e'_n)$ une base de $F$ alors l'application suivante est un \emph{isomorphisme d'espaces vectoriels}~:
+\begin{equation}
+	\fonction{m}{\Lin{E}{F}}{\Mnp{n}{p}{\K}}{f}{\M{f}{e,e'}}.
+\end{equation}
+En particulier~:
+\begin{itemize}
+	\item $m$ est linéaire~: Quel que soient un scalaire $\lambda$ et deux applications linéaire $f$ et $g$ de $E$ dans $F$, $\M{\lambda f + g}{e,e'} = \lambda \M{f}{e,e'} + \M{g}{e,e'}$;
+	\item les bases $e$ et $e'$ étant choisies, se donner un homomorphisme de $E$ dans $F$ équivaut à se donner une matrice à $n$ lignes et $p$ colonnes.
+\end{itemize}
+
+Si on fixe $e=(e_1, \cdots, e_p)$ une base de $E$ alors l'application suivante est un \emph{isomorphisme de groupes}~:
+\begin{equation}
+	\fonction{m}{\GL{E}}{\Mn{n}{\K}}{f}{\M{f}{e}}.
+\end{equation}
+En particulier~:
+\begin{itemize}
+	\item Quelque soient les automorphismes $f$ et $g$ de $E$~: $\M{f\circ g}{e} = \M{f}{e} \times \M{g}{e}$;
+	\item la base $e$ étant choisie, se donner un automorphisme de $E$ équivaut à se donner une matrice carrée inversible de taille $n$.
+\end{itemize}
+
+\section{Changement de base}
+\subsection{Matrices de passage}
+\begin{defdef}[Matrice de passage]
+	Si $e=(e_1, \cdots, e_n)$ et $e'=(e'_1, \cdots, e'_n)$ sont des bases de $E$, la matrice de passage de $e$ à $e'$ est la matrice carrée de taille $n$ dont la $j$\ieme colonne donne les coordonnées de $e'_j$ dans la base $e$. On la note $\Pass{e}{e'}$ ou $P_e^{e'}$.
 \end{defdef}
 
-On retiendra, avec des notations évidentes que~:
-\begin{equation}
-	\Det A = \sum_{\sigma \in \S_n} \epsilon_\sigma \prod_{i=1}^{n} a_{\sigma(i),i}
-\end{equation}
-et
-\begin{align}
-	\Det(\Transpose{A}) &= \Det A \\
-	\Det(AB) &= \Det A \Det B\\
-	A \in \GLn{n}{\K} \iff& \Det A \neq 0 \ \text{et} \ \Det(A^{-1}) = \frac{1}{\Det A} 
-\end{align}
+\emph{Interprétation~:} cette définition donne deux visions de la matrice de passage $\Pass{e}{e'}$~:
+\begin{enumerate}
+	\item $\Pass{e}{e'} = \M{\Id_E}{e',e}$;
+	\item $\Pass{e}{e'} = \M{f}{e}$, où $f$ est l'unique endomorphisme de $E$ tel que pour tout $i \in \intervalleentier{1}{n}$, $f(e_i)=e'_i$.
+\end{enumerate}
 
-Exercice : Montrer que le rang d'une matrice $A$ est le plus grand format de déterminant non nul extrait de $A$.
-
-\subsection{Cofacteurs d'une matrice --- formule de développement}
-\begin{defdef}{cofacteur}
-	Soit $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}} \in \Mn{n}{\K}$. Pour $i, j \in \intervalleentier{1}{n}$ on notera $A_{i,j}$ la matrice carré de format $n-1$ obtenue en supprimant la $i$\ieme{} ligne et la $j$\ieme{} colonne de $A$.
-	
-	Le cofacteur de place $(i,j)$ de la matrice $A$ est $c_{i,j} = (-1)^{i+j} \Det A_{i,j}$ et on appelle comatrice de $a$ la matrice (de même format que $A$) des cofacteurs de $A$~:
-	\begin{equation}
-		\Com(A) = (c_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}} = ((-1)^{i+j} \Det A_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}}
-	\end{equation}
-\end{defdef}
-
-On montre les résultats suivants~:
+On en déduit alors aisément les deux résultats suivants fondamentaux~:
 \begin{itemize}
-	\item Développement du déterminant de $A$ suivant sa $i$\ieme{} ligne~:
-	\begin{equation}
-		\Det A = \sum_{j=1}^n a_{i,j} c_{i,j},
-	\end{equation}
-	dans cette formule interviennent les coefficients de la $i$\ieme{} ligne de $A$ ainsi que les cofacteurs de cette ligne ;
-	\item Développement du déterminant de $A$ suivant sa $j$\ieme{} colonne~:
-	\begin{equation}
-		\Det A = \sum_{i=1}^n a_{i,j} c_{i,j},
-	\end{equation}
-	dans cette formule interviennent les coefficients de la $j$\ieme{} colonne de $A$ ainsi que les cofacteurs de cette colonne ;
-	\item Formule de la comatrice~: Pour $A \in \Mn{n}{\K}$~:
-	\begin{equation}
-		A \times \Transpose{\Com(A)} = \Transpose{\Com(A)} \times A= \Det A \cdot In,
-	\end{equation}
-	en conséquence, si $A \in \GLn{n}{\K}$~:
-	\begin{equation}
-		A^{-1} = \frac{1}{\Det A} \Transpose{\Com(A)}.
-	\end{equation}
+	\item $\Pass{e}{e'} \in \GLn{n}{\K}$ et son inverse est $\Pass{e}{e'}^{-1} = \Pass{e'}{e}$;
+	\item Soit une troisième base $e''$ de $E$, alors $\Pass{e}{e''} = \Pass{e}{e'} \times \Pass{e'}{e''}$
 \end{itemize}
-Exercice : Montrer que pour toute matrice $A \in \Mn{n}{\K}$, on a~:
-\begin{align}
-	\rg(A) \leqslant n-2 &\implies \rg(\Com(A)) = 0\\	
-	\rg(A) = n-1 &\implies \rg(\Com(A)) = 1\\
-	\rg(A) = n &\implies \rg(\Com(A)) = n\\
-\end{align}
-
-\section{Système d'équations linéaires}
-\subsection{Définitions et premières propriétés}
-On appelle système de $n$ équation linéaires à $p$ inconnues $x_1, cdots, x_p$ un système de la forme~:
+\subsection{Changement de base pour les vecteurs (ou les points)}
+Avec les notations $P = \Pass{e}{e'}$, $X$ les coordonnées de $x \in E$ dans la base $e$, $X'$ les coordonnées de $x \in E$ dans la base $e'$, on a la formule de passage~:
 \begin{equation}
-	(S) \left\{ \begin{array}{lllll}
-				a_{1,1}x_1 &+ a_{1,2}x_2 &+ \cdots &+ a_{1,p}x_p &= b_1 \\
-				a_{2,1}x_1 &+ a_{2,2}x_2 &+ \cdots &+ a_{2,p}x_p &= b_2 \\
-				           & \cdots      &  \cdots &             & \cdots \\
-				a_{n,1}x_1 &+ a_{n,2}x_2 &+ \cdots &+ a_{n,p}x_p &= b_n
-				\end{array}
-		\right.
-\end{equation}
-Le système est homogène associé est~:
-\begin{equation}
-  (S_0) \left\{ \begin{array}{lllll}
-		a_{1,1}x_1 &+ a_{1,2}x_2 &+ \cdots &+ a_{1,p}x_p &= 0 \\
-		a_{2,1}x_1 &+ a_{2,2}x_2 &+ \cdots &+ a_{2,p}x_p &= 0 \\
-		& \cdots      &  \cdots &             & \cdots \\
-		a_{n,1}x_1 &+ a_{n,2}x_2 &+ \cdots &+ a_{n,p}x_p &= 0
-	\end{array}
-	\right.
+	\underbrace{X}_{\in \Mnp{n}{1}{\K}} = \overbrace{P}^{\in \GLn{n}{\K}} \times \underbrace{X'}_{\in \Mnp{n}{1}{\K}}
 \end{equation}
 
-$A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \in \Mnp{n}{p}{\K}$ est la matrice du système et $B = (b_{i})_{1 \leqslant i \leqslant n} \in \Mnp{n}{1}{\K}$ est le second membre.
+Notez que ces formules de changement de base expriment les anciennes coordonnées en fonction des nouvelles.
 
-On appelle solution du système tout $p$-uplet $(x_1,\cdots,x_p) \in \K^p$ vérifiant les $n$ équations. Le système $(S)$ est dit compatible s'il possède au moins une solution. $\rg(A)$ est appelé le rang du système.
-
-Il est évident, par linéarité, que l'ensemble $\Sigma_0$ des solutions du système homogène $S_0$ est un sous-espace-vectoriel de $\K^p$ et que l'ensemble $\Sigma$ des solutions du système $(S)$ est soit vide soit un sous-espace affine de de $\K^p$ de direction $\Sigma_0$ comme le montrent les interprétations suivantes.
-
-\subsection{Interprétations}
-
-\paragraph{Matricielle}
-Si $X = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_p \end{pmatrix}$ alors $(S) \iff (AX =B)$. Il est alors clair que si $A$ est carrée inversible alors $(S)$ admet une seule solution $X_0 = A^{-1}B$ et $(S_0)$ admet pour seule solution $0$.
-
-\paragraph{Linéaire}
-Soit $\fonction{f}{\Mnp{p}{1}{\K}}{\Mnp{n}{1}{\K}}{X}{AX}$. Alors, il est clair que~:
-\begin{itemize}
-	\item $f$ est linéaire et que $\Sigma = f^{-1}(\{B\})$ est l'ensemble des antécédents de $B$ par $f$ ;
-	\item $(S)$ est compatible si et seulement si $B \in \Image{f}$, et (s'en convaincre) $\Dim \Image{f} = \rg(A) = r$ ;
-	\item si $(S)$ est compatible et si $(X_0) \in \Sigma$ est une solution alors $\Sigma = X_0+ \ker(f)$ est un sous-espace affine de $\Mnp{p}{1}{\K}$ de direction $\ker(f)$ et la formule du rang donne~: $\Dim \Mnp{p}{1}{\K} = \Dim \Image{f} + \Dim \ker(f)$, soit $p=r+\Dim \ker(f)$ et donc $\Dim \Sigma = \Dim \Sigma_0 = p-r$, où $r=\rg(A)$.
-\end{itemize}
-
-\paragraph{Vectorielle} Si on note $C=(C_1, \cdots, C_p)$ les colonnes de la matrice $A$, le système s'écrit : $\sum_{k=1}^p x_kC_k = B$. On voit que $(S)$ est compatible si et seulement si $B \in \VectEngendre(C) \subset \Mnp{n}{1}{\K}$. L'ensemble $\Sigma$ des solutions est alors l'ensemble des coefficients des combinaisons linéaires de $C_1, \cdots, C_p$ donnant $B$.
-
-\paragraph{Duale} Soit, pour tout $i \in \intervalleentier{1}{n}$, $\varphi_i$ la forme linéaire sur $\K^p$ définie par la $i$\ieme{} ligne de $A$~:
+Si maintenant $E$ est considéré comme un espace affine rapporté à deux repères $\mathcal{R} = \{a;e\}$ et $\mathcal{R'} = \{a';e'\}$ alors si $\Omega$ est la colonne des coordonnées de la nouvelle origine $a'$ dans l'ancien repère, on a~:
 \begin{equation}
-	\fonction{\varphi}{\K^p}{\K}{(x_1, \cdots, x_p)}{\sum_{k=1}^p a_{i,k}x_k}.
+	X = \Omega +PX'.
 \end{equation}
-Le système peut alors s'écrire
-\begin{equation}
-	(S) \left\{ \begin{array}{ll}
-		\varphi_1(x_1, \cdots, x_p) &= b_1 \\
-		\varphi_2(x_1, \cdots, x_p) &= b_2 \\
-		 \cdots      &   \\
-		\varphi_n(x_1, \cdots, x_p) &= b_n
-	\end{array}
-	\right.
-\end{equation}
-On a ~:
-\begin{itemize}
-	\item $r=\rg(A) = \rg(\varphi_1, \cdots, \varphi_n)$;
-	\item $\Sigma_0$ est l'intersection des $n$ hyperplans vectoriels $\ker(\varphi_i)$~: $\Sigma_0 = \bigcap_{1 \leqslant i \leqslant n} \ker(\varphi_i)$.
-	\item $\Sigma$ est l'intersection des $n$ hyperplans affines d'équations ``$\varphi_i=b_i$''.
-\end{itemize}
 
-\subsection{A retenir}
-\begin{itemize}
-	\item $(S)$ est dit \emph{de Cramer} si $A \in \GLn{p}{\K}$ et alors l'unique solution $(x_1^*, \cdots, x_p^*)$ est donnée par les formules de Cramer~:
-	\begin{equation}
-		\forall j \in \intervalleentier{1}{p} \quad x_j^* = \frac{\Det A_j}{\Det A},
-	\end{equation}
-	où $A_j$ est la matrice obtenue en remplaçant dans $A$ la $j$\ieme{} colonne par le second membre $B$.
-	\item Une matrice carrée $A$ est inversible si et seulement si elle vérifie~:
-	\begin{equation}
-		\forall X \in \Mnp{n}{1}{\K} \quad AX=0 \implies X=0.
-	\end{equation}
-	\item Lorsque $(S)$ est compatible~: $\Sigma$ est un sous-espace affine de $\Mnp{p}{1}{\K}$ (ou $\K^p$) de dimensions~:
-	\begin{equation}
-		p-r = \text{nombre d'inconnues} - \text{rang du système}
-	\end{equation}
-	\item En particulier, l'intersection de $n$ hyperplans ``indépendants'' (les $n$ formes linéaires les définissant sont linéairement indépendantes) dans un espace vectoriel de dimension $p$ est~: $p-n$.
-\end{itemize}
+\subsection{Changement de base pour les applications linéaires}
+Soient $E$ et $F$ deux $\K$-espaces vectoriel de dimension finie respectives $p$ et $n$. Soient $e$ et $e'$ des bases de $E$, $f$ et $f'$ des base de $F$, $P = \Pass{e}{e'} \in \GLn{p}{\K}$ et $Q = \Pass{f}{f'} \in \GLn{n}{\K}$.
+Pour tout $u \in \Lin{E}{F}$, si on pose $A = \M{u}{e,f}$ et $B = \M{u}{e',f'}$, alors on a~:
+\begin{equation}
+	B=Q^{-1} A P.
+\end{equation}
+Cas particulier~: Pour tout endomorphisme $u \in\Endo{E}$, on prend en général la même base au départ et à l'arrivée ($e=f$ et $e'=f'$) et la formule de changement de base se simplifie~: si $P = \Pass{e}{e'}$, si on pose $A = \M{u}{e}$ et $B = \M{u}{e'}$, alors on a~:
+\begin{equation}
+	B=P^{-1} A P.
+\end{equation}
