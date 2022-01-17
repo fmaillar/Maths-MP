@@ -1,0 +1,280 @@
+\chapter{Déterminants}
+\begin{remarque}[Remarque préliminaire]
+	Ces rappels de cours de Maths-Sup ne sont pas nécessairement dans l'ordre qu'imposerait une présentation complète de la théorie. 
+\end{remarque}
+\section{Groupe symétrique}
+\begin{defdef}[permutation]
+	On appelle \emph{permutation} sur $n$ éléments, toute bijection $\sigma$ de $\intervalleentier{1}{n}$ sur lui-même. 
+\end{defdef}
+
+On peut représenter une permutation $\sigma$ de la façon suivante $\sigma = 
+\begin{pmatrix}
+	1 & 2 & \cdots & n \\
+	\sigma(1)& \sigma(2)  &\cdots  & \sigma(n) 
+\end{pmatrix}
+$.
+
+L'ensemble des permutations de $\intervalleentier{1}{n}$ est un groupe pour la loi $\circ$ de composition des applications de $\intervalleentier{1}{n}$ dans lui-même. On note $\S_n$ et on l'appelle \emph{le groupe symétrique de degré $n$}. Son cardinal vaut $\Card \S_n = n!$.
+
+\begin{defdef}[cycle]
+	Un \emph{cycle} de longueur $l \geqslant 2$ est une permutation $\gamma$ telle qu'il existe $i_1$, $i_2$, \ldots, $i_l$ distincts dans $\intervalleentier{1}{n}$ vérifiant~:
+	\begin{align}
+		\forall i \in \intervalleentier{1}{n} \setminus \{i_k\}_{k \in \intervalleentier{1}{l}} \quad \gamma(i)&=i \\
+		\forall k \in \intervalleentier{1}{l-1} \quad \gamma(i_k) &= i_{k+1} \\
+		\gamma(i_l) &= i_l.
+	\end{align}
+\end{defdef}
+Autrement dit $\gamma$ laisse fixes les entiers différents de $i_1$, $i_2$, \ldots, $i_l$ et permute circulairement les $i_1$, $i_2$, \ldots, $i_l$~:
+\begin{equation}
+	i_1 \overset{\gamma}{\longmapsto} i_2 \overset{\gamma}{\longmapsto} i_3 \overset{\gamma}{\longmapsto} \cdots i_{l-1} \overset{\gamma}{\longmapsto} i_l.
+\end{equation}
+On note souvent $\gamma = (i_1, i_2, \cdots, i_l)$.
+
+Un cycle de longueur 2 est appelé une \emph{transposition}~: la transposition $\sigma = (i_1, i_2)$ échange $i_1$ et $i_2$ et laisse fixes les $n-2$ autres entiers de $\intervalleentier{1}{n}$.
+
+On peut montrer que toute permutation sur $n$ éléments est la composée de transpositions, mais l'écriture n'est pas unique.
+
+\begin{defdef}[Signature d'une permutation]
+	Soit une permutation $\sigma \in \S_n$. Le nombre d'inversions de $\sigma$ est~:
+	\begin{equation}
+		I_\sigma = \Card\enstq{(i,j)\in\intervalleentier{1}{n}^2}{i<j \ \text{et} \ \sigma(i)>\sigma(j)}.
+	\end{equation}
+	La signature de $\sigma$ est $\epsilon_\sigma = (-1)^{I_\sigma}$.
+\end{defdef}
+On dit que $\sigma$ est paire si sa signature vaut $1$ et impaire si elle vaut $-1$. La signature d'un cycle $\gamma$ de longueur $l$ vaut $\epsilon_\gamma = (-1)^{l-1}$. Les transpositions sont des permutations impaires.
+
+L'application $\fonction{\epsilon}{(\S_n, \circ)}{(\{-1,1\}, \times)}{\sigma}{\epsilon_\sigma}$ est un morphisme de groupe~:
+\begin{equation}
+	\forall \sigma, \sigma' \in \S_n \quad \epsilon_{\sigma \circ \sigma'} = \epsilon_\sigma \epsilon_{\sigma'},
+\end{equation}
+en particulier $\epsilon_{\Id} = 1$, donc $\epsilon_{\sigma^{-1}} = \epsilon_\sigma$.
+
+Enfin, le noyau de ce morphisme $\A_n = \ker(\epsilon) = \enstq{\sigma \in \S_n}{\epsilon_\sigma=1}$ est le sous-groupe des permutations paires de $\intervalleentier{1}{n}$; on l'appelle le \emph{groupe alterné} de degré $n$, son cardinal vaut $\Card \A_n = \frac{n!}{2}$.
+
+En effet, il y autant de permutations paires que d'impaires car si $\tau$ est un transposition quelconque, l'application suivante est clairement bijective~:
+\begin{equation}
+	\fonction{\Phi}{\A_n}{\S_n\setminus\A_n}{\sigma}{\sigma \circ \tau},
+\end{equation}
+de réciproque
+\begin{equation}
+	\fonction{\Phi^{-1}}{\S_n\setminus\A_n}{\A_n}{s}{s \circ \tau}.
+\end{equation}
+\section{Formes $n$-linéaires alternées en dimension $n$}
+Dans toute la suite $E$ désignera un $\K$-espace vectoriel de dimension $n$.
+
+\begin{defdef}[forme $n$-linéaire alternée]
+	Une application $\Phi : E^n \longrightarrow \K$ est appelée une forme $n$-linéaire alternée si~:
+	\begin{enumerate}
+		\item Pour tout $i \in \intervalleentier{1}{n}$ et tous vecteurs $(x_k)_{k \in \intervalleentier{1}{n} \setminus \{i\}}$, l'application~:
+		\begin{equation}
+			\fonction{\Phi_i}{E}{\K}{x}{\Phi(x_1,\cdots,x_{i-1},x,x_{i+1},\cdots,x_n)} \in E^*,
+		\end{equation}
+		c'est-à-dire que $\Phi_i$ est une forme linéaire ;
+		\item
+		\begin{equation}
+			\forall (x_1, \cdots, x_n) \in E^n \ (\exists i,j \in \intervalleentier{1}{n} \ i \neq j \ \text{et} \ x_i=x_j \implies \Phi(x_1, \cdots, x_n) = 0) 
+		\end{equation}		
+	\end{enumerate}
+\end{defdef}
+
+\begin{prop}
+	Soit $\Phi$ une forme $n$-linéaire alternée sur $E$. On a~:
+	\begin{enumerate}
+		\item Pour tous $i < j$ dans $\intervalleentier{1}{n}$~:
+		\begin{equation}
+			\forall (x_1, \cdots, x_n) \in E^n \quad \Phi(x_1, \cdots, x_i, \cdots, x_j, \cdots,x_n) = - \Phi(x_1, \cdots, x_j, \cdots, x_i, \cdots,x_n) ;
+		\end{equation}
+		\item 
+		\begin{equation}
+			\forall (x_1, \cdots, x_n) \in E^n \forall \sigma \in \S_n \quad \Phi(x_{\sigma(i)})_{i \in \intervalleentier{1}{n}} = \epsilon_\sigma \Phi(x_{i})_{i \in \intervalleentier{1}{n}}
+		\end{equation}
+	\end{enumerate}
+\end{prop}
+
+\section[Déterminant]{Déterminant (dans une base) d'une famille de $n$ vecteurs}
+
+\begin{theo}
+	
+	Soit $e$ une base de $E$. On a~:
+	\begin{enumerate}
+		\item Il existe une unique forme $n$-linéaire alternée que l'on note $\Det_e$ telle que~:
+		\begin{equation}
+			\Det_e(e_1, \cdots, e_n)=1;
+		\end{equation}
+	\item L'ensemble des formes $n$-linéaires alternées sur $E$ est une droite vectorielle et $\Det_e$ en est une base;
+	\item Si $e'$ est une autre base de $E$ alors $\Det_{e'} = \Det_{e'}(e) \Det_{e}$.
+	\end{enumerate}
+\end{theo}
+
+On peut même être plus précis. SI les vecteurs $x_1, \cdots, x_n$ se décomposent comme suit dans la base $e$~:
+\begin{equation}
+	\forall j \in \intervalleentier{1}{n} \quad x_j = \sum_{i=1}^n x_{i,j}e_i,
+\end{equation}
+alors~:
+\begin{equation}
+	\Det_e(x_1, \cdots, x_n) = \sum_{\sigma \in \S_n} \epsilon_\sigma \prod_{i=1}^{n} x_{\sigma(i),i}
+\end{equation}
+
+En conséquence du théorème on a aussi, si $e$ et $e'$ sont des bases de $E$~:
+\begin{equation}
+	\Det_{e'}(e) \Det_{e}(e') = 1
+\end{equation}
+et la propriété-outil fondamentale~: Pour une base $e$ et une famille de vecteurs quelconques $X$ de $E$ on a l'équivalence~:
+la famille $X$ est libre si et seulement si son déterminant dans la base $e$ est non nul $\Det_e(X) \neq 0$.
+
+\section{Déterminant d'un endomorphisme en dimension finie}
+Ce théorème sert aussi de définition
+\begin{theo}
+	Soit $f \in \Endo{E}$. Il existe un unique scalaire $\delta$ appelée déterminant de $f$ tel que pour toute base $e$ de $E$ et tous vecteurs $x_1, \cdots, x_n$ de $E$~:
+	\begin{equation}
+		\Det_e(f(x_1), \cdots, f(x_n)) = \delta \Det_{e}(x_1, \cdots x_n).
+	\end{equation}
+\end{theo}
+On retiendra avec des notations évidentes que~:
+\begin{align}
+	\Det_e(f(x_1), \cdots, f(x_n)) &= \Det f \Det_e(x_1, \cdots x_n) \\
+	\Det f &= \Det_e(f(e_1), \cdots, f(e_n))\\
+	\Det(f \circ g) &= \Det f \Det g \\
+	f \in \GL{E} &\iff \Det(f) \neq 0 \\
+	\forall f \in \GL{E} & \Det(f^{-1}) = \frac{1}{\Det(f)}
+\end{align}
+
+\section{Déterminant d'une matrice}
+\subsection{Définition et premières propriétés}
+\begin{defdef}
+	Soit $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}} \in \Mn{n}{\K}$ une matrice carrée à coefficients dans $\K$. On appelle le déterminant de $A$ le déterminant de ses $n$ vecteurs colonnes dans la base canonique de $\Mnp{n}{1}{\K}$.
+\end{defdef}
+
+On retiendra, avec des notations évidentes que~:
+\begin{equation}
+	\Det A = \sum_{\sigma \in \S_n} \epsilon_\sigma \prod_{i=1}^{n} a_{\sigma(i),i}
+\end{equation}
+et
+\begin{align}
+	\Det(\Transpose{A}) &= \Det A \\
+	\Det(AB) &= \Det A \Det B\\
+	A \in \GLn{n}{\K} \iff& \Det A \neq 0 \ \text{et} \ \Det(A^{-1}) = \frac{1}{\Det A} 
+\end{align}
+
+Exercice : Montrer que le rang d'une matrice $A$ est le plus grand format de déterminant non nul extrait de $A$.
+
+\subsection{Cofacteurs d'une matrice --- formule de développement}
+\begin{defdef}{cofacteur}
+	Soit $A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}} \in \Mn{n}{\K}$. Pour $i, j \in \intervalleentier{1}{n}$ on notera $A_{i,j}$ la matrice carré de format $n-1$ obtenue en supprimant la $i$\ieme{} ligne et la $j$\ieme{} colonne de $A$.
+	
+	Le cofacteur de place $(i,j)$ de la matrice $A$ est $c_{i,j} = (-1)^{i+j} \Det A_{i,j}$ et on appelle comatrice de $a$ la matrice (de même format que $A$) des cofacteurs de $A$~:
+	\begin{equation}
+		\Com(A) = (c_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}} = ((-1)^{i+j} \Det A_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant n}}
+	\end{equation}
+\end{defdef}
+
+On montre les résultats suivants~:
+\begin{itemize}
+	\item Développement du déterminant de $A$ suivant sa $i$\ieme{} ligne~:
+	\begin{equation}
+		\Det A = \sum_{j=1}^n a_{i,j} c_{i,j},
+	\end{equation}
+	dans cette formule interviennent les coefficients de la $i$\ieme{} ligne de $A$ ainsi que les cofacteurs de cette ligne ;
+	\item Développement du déterminant de $A$ suivant sa $j$\ieme{} colonne~:
+	\begin{equation}
+		\Det A = \sum_{i=1}^n a_{i,j} c_{i,j},
+	\end{equation}
+	dans cette formule interviennent les coefficients de la $j$\ieme{} colonne de $A$ ainsi que les cofacteurs de cette colonne ;
+	\item Formule de la comatrice~: Pour $A \in \Mn{n}{\K}$~:
+	\begin{equation}
+		A \times \Transpose{\Com(A)} = \Transpose{\Com(A)} \times A= \Det A \cdot In,
+	\end{equation}
+	en conséquence, si $A \in \GLn{n}{\K}$~:
+	\begin{equation}
+		A^{-1} = \frac{1}{\Det A} \Transpose{\Com(A)}.
+	\end{equation}
+\end{itemize}
+Exercice : Montrer que pour toute matrice $A \in \Mn{n}{\K}$, on a~:
+\begin{align}
+	\rg(A) \leqslant n-2 &\implies \rg(\Com(A)) = 0\\	
+	\rg(A) = n-1 &\implies \rg(\Com(A)) = 1\\
+	\rg(A) = n &\implies \rg(\Com(A)) = n\\
+\end{align}
+
+\section{Système d'équations linéaires}
+\subsection{Définitions et premières propriétés}
+On appelle système de $n$ équation linéaires à $p$ inconnues $x_1, cdots, x_p$ un système de la forme~:
+\begin{equation}
+	(S) \left\{ \begin{array}{lllll}
+				a_{1,1}x_1 &+ a_{1,2}x_2 &+ \cdots &+ a_{1,p}x_p &= b_1 \\
+				a_{2,1}x_1 &+ a_{2,2}x_2 &+ \cdots &+ a_{2,p}x_p &= b_2 \\
+				           & \cdots      &  \cdots &             & \cdots \\
+				a_{n,1}x_1 &+ a_{n,2}x_2 &+ \cdots &+ a_{n,p}x_p &= b_n
+				\end{array}
+		\right.
+\end{equation}
+Le système est homogène associé est~:
+\begin{equation}
+  (S_0) \left\{ \begin{array}{lllll}
+		a_{1,1}x_1 &+ a_{1,2}x_2 &+ \cdots &+ a_{1,p}x_p &= 0 \\
+		a_{2,1}x_1 &+ a_{2,2}x_2 &+ \cdots &+ a_{2,p}x_p &= 0 \\
+		& \cdots      &  \cdots &             & \cdots \\
+		a_{n,1}x_1 &+ a_{n,2}x_2 &+ \cdots &+ a_{n,p}x_p &= 0
+	\end{array}
+	\right.
+\end{equation}
+
+$A = (a_{i,j})_{\substack{1\leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \in \Mnp{n}{p}{\K}$ est la matrice du système et $B = (b_{i})_{1 \leqslant i \leqslant n} \in \Mnp{n}{1}{\K}$ est le second membre.
+
+On appelle solution du système tout $p$-uplet $(x_1,\cdots,x_p) \in \K^p$ vérifiant les $n$ équations. Le système $(S)$ est dit compatible s'il possède au moins une solution. $\rg(A)$ est appelé le rang du système.
+
+Il est évident, par linéarité, que l'ensemble $\Sigma_0$ des solutions du système homogène $S_0$ est un sous-espace-vectoriel de $\K^p$ et que l'ensemble $\Sigma$ des solutions du système $(S)$ est soit vide soit un sous-espace affine de de $\K^p$ de direction $\Sigma_0$ comme le montrent les interprétations suivantes.
+
+\subsection{Interprétations}
+
+\paragraph{Matricielle}
+Si $X = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_p \end{pmatrix}$ alors $(S) \iff (AX =B)$. Il est alors clair que si $A$ est carrée inversible alors $(S)$ admet une seule solution $X_0 = A^{-1}B$ et $(S_0)$ admet pour seule solution $0$.
+
+\paragraph{Linéaire}
+Soit $\fonction{f}{\Mnp{p}{1}{\K}}{\Mnp{n}{1}{\K}}{X}{AX}$. Alors, il est clair que~:
+\begin{itemize}
+	\item $f$ est linéaire et que $\Sigma = f^{-1}(\{B\})$ est l'ensemble des antécédents de $B$ par $f$ ;
+	\item $(S)$ est compatible si et seulement si $B \in \Image{f}$, et (s'en convaincre) $\Dim \Image{f} = \rg(A) = r$ ;
+	\item si $(S)$ est compatible et si $(X_0) \in \Sigma$ est une solution alors $\Sigma = X_0+ \ker(f)$ est un sous-espace affine de $\Mnp{p}{1}{\K}$ de direction $\ker(f)$ et la formule du rang donne~: $\Dim \Mnp{p}{1}{\K} = \Dim \Image{f} + \Dim \ker(f)$, soit $p=r+\Dim \ker(f)$ et donc $\Dim \Sigma = \Dim \Sigma_0 = p-r$, où $r=\rg(A)$.
+\end{itemize}
+
+\paragraph{Vectorielle} Si on note $C=(C_1, \cdots, C_p)$ les colonnes de la matrice $A$, le système s'écrit : $\sum_{k=1}^p x_kC_k = B$. On voit que $(S)$ est compatible si et seulement si $B \in \VectEngendre(C) \subset \Mnp{n}{1}{\K}$. L'ensemble $\Sigma$ des solutions est alors l'ensemble des coefficients des combinaisons linéaires de $C_1, \cdots, C_p$ donnant $B$.
+
+\paragraph{Duale} Soit, pour tout $i \in \intervalleentier{1}{n}$, $\varphi_i$ la forme linéaire sur $\K^p$ définie par la $i$\ieme{} ligne de $A$~:
+\begin{equation}
+	\fonction{\varphi}{\K^p}{\K}{(x_1, \cdots, x_p)}{\sum_{k=1}^p a_{i,k}x_k}.
+\end{equation}
+Le système peut alors s'écrire
+\begin{equation}
+	(S) \left\{ \begin{array}{ll}
+		\varphi_1(x_1, \cdots, x_p) &= b_1 \\
+		\varphi_2(x_1, \cdots, x_p) &= b_2 \\
+		 \cdots      &   \\
+		\varphi_n(x_1, \cdots, x_p) &= b_n
+	\end{array}
+	\right.
+\end{equation}
+On a ~:
+\begin{itemize}
+	\item $r=\rg(A) = \rg(\varphi_1, \cdots, \varphi_n)$;
+	\item $\Sigma_0$ est l'intersection des $n$ hyperplans vectoriels $\ker(\varphi_i)$~: $\Sigma_0 = \bigcap_{1 \leqslant i \leqslant n} \ker(\varphi_i)$.
+	\item $\Sigma$ est l'intersection des $n$ hyperplans affines d'équations ``$\varphi_i=b_i$''.
+\end{itemize}
+
+\subsection{A retenir}
+\begin{itemize}
+	\item $(S)$ est dit \emph{de Cramer} si $A \in \GLn{p}{\K}$ et alors l'unique solution $(x_1^*, \cdots, x_p^*)$ est donnée par les formules de Cramer~:
+	\begin{equation}
+		\forall j \in \intervalleentier{1}{p} \quad x_j^* = \frac{\Det A_j}{\Det A},
+	\end{equation}
+	où $A_j$ est la matrice obtenue en remplaçant dans $A$ la $j$\ieme{} colonne par le second membre $B$.
+	\item Une matrice carrée $A$ est inversible si et seulement si elle vérifie~:
+	\begin{equation}
+		\forall X \in \Mnp{n}{1}{\K} \quad AX=0 \implies X=0.
+	\end{equation}
+	\item Lorsque $(S)$ est compatible~: $\Sigma$ est un sous-espace affine de $\Mnp{p}{1}{\K}$ (ou $\K^p$) de dimensions~:
+	\begin{equation}
+		p-r = \text{nombre d'inconnues} - \text{rang du système}
+	\end{equation}
+	\item En particulier, l'intersection de $n$ hyperplans ``indépendants'' (les $n$ formes linéaires les définissant sont linéairement indépendantes) dans un espace vectoriel de dimension $p$ est~: $p-n$.
+\end{itemize}

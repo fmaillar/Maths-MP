@@ -8,9 +8,9 @@
 Dans ce chapitre $E$ et $F$ désignent des $\K$-espaces vectoriels de dimension
 quelconque.
 \section{Applications linéaires}
-\label{sec:applin}
+
 \subsection{Définitions} 
-\label{subsec-chap0:Def}
+
 \begin{defdef} 
     Une application $f$ de $E$ dans $F$ est dite linéaire, ou bien que c'est un
     homomorphisme de $E$ dans $F$, si~: 
@@ -74,7 +74,7 @@ On a deux résultats importants~:
     $\K$-algèbre. Elle n'est ni commutative ni intègre.
 \end{prop}
 \subsection{Image de familles}
-\label{subsec-chap0:Image}
+
 Soit $f \in \Lin{E}{F}$ et $\xi=(x_i)_{i \in I}$ une famille de vecteurs de $E$.
 On note $f(\xi) = (f(x_i))_{i \in I}$ la famille image de $\xi$ par $f$. On
 vérifiera à titre d'exercice que~:
@@ -89,9 +89,9 @@ vérifiera à titre d'exercice que~:
     \item Si $\xi$ est une base de $E$ et $f$ bijective alors $f(\xi)$ est une base de $F$.
 \end{itemize}
 \section{Applications affines}
-\label{sec-chap0:Appaff}
+
 \subsection{Définition}
-\label{subsec-chap0:Def2}
+
 \begin{defdef}
     Une application $f$ de $E$ dans $f$ est dite \emph{affine} s'il existe $a
     \in E$ et $\tilde{f} \in \Lin{E}{F}$ tels que~:
@@ -114,7 +114,7 @@ On montre alors aisément que~:
         (réciproque vraie).
 \end{itemize}
 \subsection{Propriétés}
-\label{subsec-chap0:Prop2}
+
 \paragraph{Structure}
 \begin{prop}
     L'ensemble $\Aff{E}{F}$ des applications affines de $E$ dans $F$ est un
@@ -140,7 +140,7 @@ On montre alors aisément que~:
 	Soit $f \in \Aff{E}{F}$ une application affine de E dans F. Si $g$ est le barycentre de la famille $(x_i)_{i \in I}$ affectée des coefficient $(\alpha_i)_{i \in I}$, alors $f(g)$ est le barycentre e la famille $(f(x_i))_{i \in I}$ affectée des coefficient $(\alpha_i)_{i \in I}$.
 \end{prop}
 \section{Image, noyau et rang}
-\label{sec-chap0:ImageNoyauRang}
+
 Dans cette section, $E$, $F$ et $G$ sont des espaces vectoriels quelconques.
 \subsection{Rang d'une application linéaire}
 \begin{defdef}
@@ -259,10 +259,10 @@ Autrement dit, une application affine est entièrement déterminée par sa parti
 	\end{equation}
 \end{corth}
 \section[Projections et symétries]{Projections et symétries, deux approches d'une même notion}
-\label{chap0-sec:projection}
+
 $E$ désigne un $\K$-espace vectoriel de dimension quelconque.
 \subsection{Projection, projecteur}
-\label{chap0-subsec:projectionprojecteur}
+
 \paragraph{Projection}
 Si $F$ et $G$ sont des sous-espaces supplémentaires de $E$, on appelle \emph{projection} de $E$ sur $F$ parallèlement à $G$ l'application~:
 \begin{equation}
@@ -301,7 +301,7 @@ Une \emph{involution} est un endomorphisme de $E$, $f \in \Endo{E}$ tel que $f\c
 	\item Toute involution $f$ est la symétrie de $E$ de base $\ker(f-\Id_E)$ et de direction $\ker(f+\Id_E)$ (ce qui sous-entend que $\ker(f-\Id_E)$ et $\ker(f+\Id_E)$ sont supplémentaires).
 \end{itemize}
 \subsection{Projections et symétries affines}
-\label{chap0-subsec:projsymaff}
+
 Soient $A=a+F$ et $B=b+G$ des sous-espaces affines dont les directions $F$ et $G$ sont supplémentaires dans $E$~:$E=F\oplus G$.
 \paragraph{Projection affine} Pour tout point $m \in E$, les sous-espaces affines $A$ et $m+G$ s'intersectent en un point $p$, appelé la projection de $m$ sur $A$ parallèlement à $B$.
 \paragraph{Symétrie affine} En gardant les notations, le point $m' \in E$ tel que $\vect{pm'} = -\vect{pm}$ est appelé le symétrique de $m$ par rapport à $A$ dans la direction de $B$ (ou de $G$).
