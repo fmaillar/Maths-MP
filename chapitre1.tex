@@ -1,4 +1,4 @@
-\addtocounter{chapter}{-2}
+\addtocounter{chapter}{-3}
 \chapter{Compléments d'algèbre linéaire}
 \minitoc
 \minilof
@@ -133,7 +133,7 @@ Ainsi, $\phi$ est un morphisme d'algèbre si et seulement si~:
 \subsection{Définition}
 Soient $I$ et $E$ des ensembles non vides.
 
-Une famille d'éléments de $E$ indexées par $I$ est une application, $x$, de $I$ dans $E$ que l'on note $x=(x_i)_{i \in I}$ telle que~:$\fonction{x}{I}{E}{i}{x_i}$. L'entier $i$  est appelé l'indice et $x_i$ l'élément de la famille bien qu'à proprement parler il n'appartient pas à la famille puisque cette famille n'est pas un ensemble.
+Une famille d'éléments de $E$ indexées par $I$ est une application, $x$, de $I$ dans $E$ que l'on note $x=(x_i)_{i \in I}$ telle que $\fonction{x}{I}{E}{i}{x_i}$. L'entier $i$  est appelé l'indice et $x_i$ l'élément de la famille bien qu'à proprement parler il n'appartient pas à la famille puisque cette famille n'est pas un ensemble.
 
 Si $J$ est un sous-ensemble non vide de $I$, alors la restriction à $J$ de l'application $x$, noté $(x_i)_{i \in J}$ est une sous-famille de $(x_i)_{i \in I}$. Inversement, $(x_i)_{i \in I}$ est une sur-famille de $(x_i)_{i \in J}$.
 
@@ -143,6 +143,106 @@ L'ensemble des familles d'éléments de $E$ indexée par $I$ est noté $E^I$.
 
 $E^I$ et $\K^I$ sont naturellement des $\K$-espaces vectoriels et on en rappelle les lois~:
 \begin{align}
-	\forall \lambda \in \K \quad \forall x,y \in E^I \quad (\lambda x +y)_{i \in I} = \lambda x_{i\in I} + y_{i\in I}
-	
+	\forall \lambda \in \K \quad \forall x,y \in E^I \quad (\lambda x +y)_{i \in I} = \lambda x_{i\in I} + y_{i\in I}	
 \end{align}
+
+\paragraph{Famille presque nulle de scalaires}
+Une famille $(\lambda)_{i \in I}$ d'éléments d'un corps $\K$ est dite \emph{presque nulle} si son ``support'' $J =\enstq{i \in I}{\lambda_i \neq 0}$ est un ensemble fini. L'ensemble des familles presque nulle est noté $\K^{(I)}$ et c'est un sous-espace vectoriel de $\K^I$.
+
+\paragraph{Combinaisons linéaires}
+Soit $X=(x_i)_{i \in I}$ une famille de vecteurs de $E$ indexée par un ensemble quelconque $I$. Une \emph{combinaison linéaire} des vecteurs de la famille $X$ est un vecteur pouvant s'écrire~: $x = \sum_{i \in I} \lambda_i x_i$, où $\lambda$ est une famille \emph{presque nulle} de scalaires. Remarquez que cette somme a bien un sens et désigne la somme (commutative) d'un nombre \emph{fini} de vecteurs de $E$.
+
+\subsection{Familles libres, familles génératrice}
+
+Soit $(x_i)_{i \in I} \in E^I$, on définit~:
+\begin{align}
+	(x_i)_{i \in I} \text{ est libre } &\iff \forall (\lambda_i)_{i \in I} \in \K^{(I)} \; \left(\sum_{i \in I} \lambda_i x_i = 0 \implies \forall i \in I \ \lambda_i=0 \right) \\
+	(x_i)_{i \in I} \text{ est génératrice } &\iff \forall x \in E \ \exists  (\lambda_i)_{i \in I} \in \K^{(I)} \; x = \sum_{i \in I} \lambda_i x_i
+\end{align}
+
+La famille $(x_i)_{i \in I}$ est dite \emph{liée} si elle n'est pas libre. une relation $\sum_{i \in I} \lambda_i x_i = 0$ avec des scalaires presque tous nuls mais \emph{non tous nuls} est appelée une relation de liaison entre ces vecteurs.
+
+La famille $(x_i)_{i \in I}$ est appelée une \emph{base} de l'espace vectoriel $E$ si elle est à la fois libre et génératrice. On constate l'équivalence suivante~:
+\begin{equation}
+	(x_i)_{i \in I} \text{ est une base de } E \iff \forall x \in E \ \exists !  (\lambda_i)_{i \in I} \in \K^{(I)} \; x = \sum_{i \in I} \lambda_i x_i.
+\end{equation}
+Cette fois un vecteur $x$ de $E$ peut s'écrire d'une \emph{unique façon} comme combinaison linéaire des vecteurs de la famille $(x_i)_{i \in I}$ et la famille $(\lambda_i)_{i \in I}$ intervenant est appelé le \emph{système de coordonnées} de $x$ sur la base $(x_i)_{i \in I}$.
+
+L'application suivante est alors un isomorphisme d'espaces vectoriels~:
+\begin{equation}
+	\fonction{\phi}{\K^{(I)}}{E}{(\lambda_{i \in I})}{\sum_{i \in I} \lambda_i x_i}
+\end{equation}
+
+\emph{On admettra que dans tout espace vectoriel il existe des bases.}
+
+\paragraph{Glissement de notation}
+Si $I$ est un ensemble \emph{fini} de cardinal $p$, généralement $I = \intervalleentier{1}{p}$, on note souvent $(x_i)_{1 \leqslant i \leqslant p}$ voire même $(x_1, \cdots, x_p)$ au lieu de $(x_i)_{i \in \{1, 2, \cdots, p\}}$. On réécris les définitions dans ce cas~:
+\begin{align}
+	(x_1, \cdots, x_p) \text{ est libre } &\iff \forall (\lambda_1, \cdots, \lambda_p) \in \K^{p} \; \sum_{i=1}^p \lambda_i x_i = 0 \implies \lambda_1=\cdots=\lambda_p=0 \\
+	(x_1, \cdots, x_p) \text{ est génératrice } &\iff \forall x \in E \ \exists  (\lambda_1, \cdots, \lambda_p) \in \K^{p} \; x = \lambda_1 x_1 + \cdots + \lambda_p x_p \\
+	(x_1, \cdots, x_p) \text{ est une base de } E &\iff \forall x \in E \ \exists ! (\lambda_1, \cdots, \lambda_p) \in \K^{p} \; x = \lambda_1 x_1 + \cdots + \lambda_p x_p.
+\end{align}
+
+\emph{Exemples}~:
+\begin{enumerate}
+	\item Dans le $\R$-espace vectoriel $\C$, la famille $(1, 1+\ii, 1, i)$ est liée et la famille $(1, 1+i)$ est libre.
+	\item Base canonique de $\K^p$~: $e_1 = (1,0,\cdots,0)$, $e_2 = (0,1,\cdots,0)$, \ldots, $e_p = (0,0,\cdots,1)$.
+	\item Base canonique de $\K[X]$~: $(X^n)_{n \in \N}$.
+\end{enumerate}
+
+\subsection{Propriétés élémentaires}
+
+Lorsque $I$ est infini, $(x_i)_{i \in I}$ est libre si et seulement si toute sous-famille finie (\emph{id est} dont l'ensemble d'indices est fini) est libre.
+
+Toute sous-famille d'une famille libre est libre. Toute sur-famille d'une famille liée est liée.
+
+Si la famille $(x_i)_{i \in I}$, $I$ quelconque, est libre alors~:
+\begin{itemize}
+	\item $\forall i \in I \quad x_i \neq 0$
+	\item L'application $\fonction{\Phi}{I}{E}{i}{x_i}$ (appelée indexation mais c'est en fait la famille elle-même) est injective
+	\item Lorsque $I$ est fini, $\Card\enstq{x_i}{i \in I} = \Card I$.
+\end{itemize}
+
+Si $(x_i)_{i \in I}$ est une base de $E$ et $(y_i)_{i \in I}$ une famille quelconque de vecteurs de $F$, alors il existe une et une seule application linéaire $f$ de $E$ dans $F$ telle que pour tout $i \in I$, $f(x_i) = y_i$.
+
+\emph{Exemples}~:
+Si on note $\fonction{f_\alpha}{\R}{\R}{x}{\e^{\alpha x}}$, la famille $(f_\alpha)_{\alpha \in \R}$ est libre dans le $\R$-espace vectoriel $\R^\R$.
+Si on note $\fonction{g_n}{\R}{\C}{x}{x\e^{\ii n \frac{\pi}{7}}}$, la famille $(g_n)_{n \in \N}$ est libre dans le $\C$-espace vectoriel $\C^\R$.
+
+\subsection{Algèbre des fonctions polynômiales à $n$ variables $\K[x_1, \cdots, x_n]$}
+
+\begin{defdef}
+	Une application $f$ de $\K^n$ dans $\K$ est dite polynômiale à $n$ variables s'il existe une famille presque nulle de scalaires indexée par $\N^n$  $(a_i)_{i \in \N^n}$ telle que~:
+	\begin{equation}
+		\forall (x_1, \cdots, x_n) \in \K^n \quad f(x_1, \cdots, x_n) = \sum_{(i_1, \cdots, i_n) \in \N^n} a_{(i_1, \cdots, i_n)} x_1^{i_1} x_2^{i_2} \cdots x_n^{i_n}
+	\end{equation}
+\end{defdef}
+
+\begin{remarque}
+	Ici, $(a_i)_{i \in \N^n} \in \K^{(\N^n)}$.
+\end{remarque}
+\begin{exemple}
+	$(x,y,z) \overset{f}{\longmapsto} 1-2x+y^4+3xyz^5$ est une fonction polynômiale à trois variables réelles. Ici, $n=3$, $a_{(0,0,0)}=1$, $a_{(1,0,0)}=-2$, $a_{(0,4,0)}=1$, $a_{(1,1,5)}=3$ et les autres sont nuls.
+\end{exemple}
+\begin{prop}
+	L'ensemble $\K[x_1, \cdots, x_n]$ des fonctions polynômiales à $n$ variables dans $\K$ est une sous-algèbre de $\F(\K^n, \K)$.
+\end{prop}
+\begin{prop}
+	Pour $i = (i_n, \cdots, i_n) \in \N^n$, on pose $p_i : (x_1, \cdots, x_n) \longmapsto x_1^{i_1} x_2^{i_2} \cdots x_n^{i_n}$. La famille $(p_i)_{i \in \N^n}$ est une base de $\K[x_1, \cdots, x_n]$.
+\end{prop}
+\begin{proof}
+	Elle est génératrice par définition. Montrons qu'elle est libre par récurrence sur $n$~:
+	Soit $(a_i)_{i \in \N^n} \in \K^{(\N^n)}$ telle que $\sum_{i \in \N^n} a_i p_i =0$. Notons $J \subset \N^n$ le support fini de $I$. On a donc~:
+	\begin{equation}
+		\label{eq:etoile}
+		\forall (x_1, \cdots, x_n) \in \K^n \quad \sum_{i \in J} a_i x_1^{i_1} x_2^{i_2} \cdots x_n^{i_n} = 0.
+	\end{equation}
+	On ordonne cette relation suivant les puissances de $x_n$ en posant $N = \max\{i_n, i \in J\}$ et pour $k \in \intervalleentier{0}{N}$~: $J_k = \enstq{i \in J}{i_n=k}$. De sorte que si $P_k(x_1, \cdots, x_{n-1}) = \sum_{i \in J_k} a_i x_1^{i_1} x_2^{i_2} \cdots x_{n-1}^{i_{n-1}}$, alors \eqref{eq:etoile} devient~:
+	\begin{equation}
+		\forall (x_1, \cdots, x_n) \in \K^n \quad \sum_{k=0}^N P_k(x_1, \cdots, x_{n-1}) x_n^k = 0.
+	\end{equation}
+	\ldots
+\end{proof}
+
+\section{Sommes de sous-espaces vectoriels}
+\subsection{Définitions}
