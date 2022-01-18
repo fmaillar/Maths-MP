@@ -132,3 +132,17 @@ Ainsi, $\phi$ est un morphisme d'algèbre si et seulement si~:
 \section{Familles de vecteurs}
 \subsection{Définition}
 Soient $I$ et $E$ des ensembles non vides.
+
+Une famille d'éléments de $E$ indexées par $I$ est une application, $x$, de $I$ dans $E$ que l'on note $x=(x_i)_{i \in I}$ telle que~:$\fonction{x}{I}{E}{i}{x_i}$. L'entier $i$  est appelé l'indice et $x_i$ l'élément de la famille bien qu'à proprement parler il n'appartient pas à la famille puisque cette famille n'est pas un ensemble.
+
+Si $J$ est un sous-ensemble non vide de $I$, alors la restriction à $J$ de l'application $x$, noté $(x_i)_{i \in J}$ est une sous-famille de $(x_i)_{i \in I}$. Inversement, $(x_i)_{i \in I}$ est une sur-famille de $(x_i)_{i \in J}$.
+
+L'ensemble des familles d'éléments de $E$ indexée par $I$ est noté $E^I$.
+
+\emph{Dans toute la suite de ce chapitre $E$ désignera un $\K$-espace vectoriel.}
+
+$E^I$ et $\K^I$ sont naturellement des $\K$-espaces vectoriels et on en rappelle les lois~:
+\begin{align}
+	\forall \lambda \in \K \quad \forall x,y \in E^I \quad (\lambda x +y)_{i \in I} = \lambda x_{i\in I} + y_{i\in I}
+	
+\end{align}
